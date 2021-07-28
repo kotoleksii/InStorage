@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ScoreController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,4 +31,12 @@ Route::group(['prefix' => 'scores'], function(){
     Route::post('/', [ScoreController::class, 'create']);
     Route::patch('/{score}', [ScoreController::class, 'patch']);
     Route::delete('/{score}', [ScoreController::class, 'delete']);
+});
+
+Route::group(['prefix' => 'materials'], function(){
+    Route::get('/{material}', [MaterialController::class, 'get']);
+    Route::get('/', [MaterialController::class, 'getAll']);
+    Route::post('/', [MaterialController::class, 'create']);
+    Route::patch('/{material}', [MaterialController::class, 'patch']);
+    Route::delete('/{material}', [MaterialController::class, 'delete']);
 });

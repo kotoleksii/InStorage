@@ -42,7 +42,7 @@ class ScoreController extends Controller
 
     public function delete(Score $score): JsonResponse
     {
-        if($score->exists())
+        if(!$score->exists())
             return response()->json('', Response::HTTP_UNPROCESSABLE_ENTITY);
 
         $score->delete();

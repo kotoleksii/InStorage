@@ -19,12 +19,13 @@ class CreateMaterialsTable extends Migration
             $table->string('inventory_number');
             $table->date('date_start');
             $table->string('type');
-            $table->unsignedBigInteger('amount')->default('0');
+            $table->unsignedBigInteger('amount');
             $table->unsignedBigInteger('price');
             $table->unsignedBigInteger('sum');
             $table->unsignedBigInteger('employee_id');
             $table->unsignedBigInteger('score_id');
 
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('employee_id')

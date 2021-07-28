@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @method static create(array $check)
@@ -19,4 +20,9 @@ class Score extends Model
     protected $fillable = [
       'title', 'description'
     ];
+
+    public function materials(): HasMany
+    {
+        return $this->hasMany(Material::class);
+    }
 }

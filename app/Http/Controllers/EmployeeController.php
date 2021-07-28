@@ -41,7 +41,7 @@ class EmployeeController extends Controller
 
     public function delete(Employee $employee): JsonResponse
     {
-        if($employee->exists())
+        if(!$employee->exists())
             return response()->json('', Response::HTTP_UNPROCESSABLE_ENTITY);
 
         $employee->delete();

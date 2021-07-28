@@ -23,7 +23,7 @@ class MaterialFactory extends Factory
      */
     public function definition(): array
     {
-        $amount = $this->faker->randomDigit();
+        $amount = $this->faker->randomDigitNot(0);
         $price = $this->faker->numberBetween(10000, 2000000);
         $sum = $amount * $price;
 
