@@ -21,6 +21,10 @@ class Score extends Model
       'title', 'description'
     ];
 
+    /**
+     * Score has many Materials
+     * @return HasMany
+     */
     public function materials(): HasMany
     {
         return $this->hasMany(Material::class);

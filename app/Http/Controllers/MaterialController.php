@@ -4,24 +4,36 @@ namespace App\Http\Controllers;
 
 use App\Models\Material;
 use App\Services\ValidationService;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
 class MaterialController extends Controller
 {
+    /**
+     * Get all Materials
+     * @return Material[]|Collection
+     */
     public function getAll()
     {
         return Material::all();
     }
 
+    /**
+     * Get Material by id
+     * @param Material $material
+     * @return Material
+     */
     public function get(Material $material): Material
     {
         return $material;
     }
 
     /**
+     * Create a new Material
+     * @param ValidationService $validationService
+     * @return mixed
      * @throws ValidationException
      */
     public function create(ValidationService $validationService)
@@ -30,6 +42,10 @@ class MaterialController extends Controller
     }
 
     /**
+     * Update Material by id
+     * @param Material $material
+     * @param ValidationService $validationService
+     * @return JsonResponse
      * @throws ValidationException
      */
     public function patch(Material $material, ValidationService $validationService): JsonResponse
@@ -40,6 +56,11 @@ class MaterialController extends Controller
         return response()->json('', Response::HTTP_NO_CONTENT);
     }
 
+    /**
+     * Delete Material by id
+     * @param Material $material
+     * @return JsonResponse
+     */
     public function delete(Material $material): JsonResponse
     {
         if(!$material->exists())
