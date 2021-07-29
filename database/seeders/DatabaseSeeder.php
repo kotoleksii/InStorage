@@ -17,6 +17,10 @@ class DatabaseSeeder extends Seeder
             EmployeeSeeder::class,
             ScoreSeeder::class,
             MaterialSeeder::class,
+
+            PermissionsSeeder::class,
+            RolesSeeder::class,
+            TablesRelationsSeeder::class,
         ]);
     }
 }

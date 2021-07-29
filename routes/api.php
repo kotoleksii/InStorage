@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ScoreController;
@@ -15,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('/signup', [AuthController::class, 'signUp']);
+Route::post('/signin', [AuthController::class, 'signIn']);
+
+Route::get('signout', [AuthController::class, 'signOut']);
+Route::get('signout-from-all', [AuthController::class, 'signOutFromAll']);
 
 Route::group(['prefix' => 'employees'], function(){
     Route::get('/{employee}', [EmployeeController::class, 'get']);

@@ -18,6 +18,18 @@ class ValidationRules
      */
     private static $rules = [
 
+        'signup' => [
+            'name' => 'required|string|min:3|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/u',
+            'phone' => 'sometimes|regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/u',
+        ],
+
+        'signin' => [
+            'email' => 'required|email',
+            'password' => 'required',
+        ],
+
         'employee_create' => [
             'first_name' => 'required|string|min:3|max:255',
             'last_name' => 'required|string|min:3|max:255',
