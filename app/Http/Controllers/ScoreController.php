@@ -6,11 +6,35 @@ use App\Models\Score;
 use App\Services\ValidationService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
 class ScoreController extends Controller
 {
+    public function score()
+    {
+        return view('score', ['scores' => $this->getAll()]);
+    }
+
+    public function score_check(Request $request): RedirectResponse
+    {
+        $valid = $request->validate([
+            'title' => 'required|min:4|max:30',
+            'description' => 'sometimes|max:100',
+        ]);
+
+        $score = new Score();
+
+        $score->title = $request->input('title');
+        $score->description = $request->input('description');
+
+        $score->save();
+
+        return redirect()->route('score');
+    }
+
     /**
      * Get all Scores
      * @return Score[]|Collection
@@ -40,7 +64,6 @@ class ScoreController extends Controller
     {
         return Score::create($validationService->check('score_create'));
     }
-
     /**
      * Update Score by id
      * @param Score $score
@@ -69,5 +92,12 @@ class ScoreController extends Controller
         $score->delete();
 
         return response()->json('', Response::HTTP_NO_CONTENT);
+    }
+
+    public function web_delete($id): RedirectResponse
+    {
+        $data = Score::find($id);
+        $data->delete();
+        return redirect()->route('score');
     }
 }

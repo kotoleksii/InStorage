@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static create(array $check)
  * @method exists()
  * @method static count()
+ * @method static find($id)
  */
 class Score extends Model
 {

@@ -77,5 +77,11 @@ class ValidationRules
             'employee_id'    => 'sometimes|numeric|exists:App\Models\Employee,id',
             'score_id'    => 'sometimes|numeric|exists:App\Models\Score,id',
         ],
+
+        'review' => [
+            'email' => 'required|min:4|max:100',
+            'subject' => 'required|min:4|max:100',
+            'message' => 'required|min:15|max:500',
+        ],
     ];
 }
