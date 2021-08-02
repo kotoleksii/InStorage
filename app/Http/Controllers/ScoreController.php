@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
+use App\Models\Material;
 use App\Models\Score;
 use App\Services\ValidationService;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,7 +18,11 @@ class ScoreController extends Controller
 {
     public function score()
     {
-        return view('score', ['scores' => $this->getAll()]);
+        return view('score', [
+            'scores' => $this->getAll(),
+            'employees' => Employee::all(),
+            'materials' => Material::all()
+        ]);
     }
 
     public function score_check(Request $request): RedirectResponse
