@@ -2,15 +2,72 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\Material;
+use App\Models\Score;
 use App\Services\ValidationService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
 class MaterialController extends Controller
 {
+    public function get_web()
+    {
+        return view('material', [
+            'scores' => Score::all(),
+            'employees' => Employee::all(),
+            'materials' => $this->getAll(),
+        ]);
+    }
+
+    /**
+     * Create material on web site form
+     *
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function create_web(Request $request): RedirectResponse
+    {
+       $request->validate([
+            'title' => 'required|min:4|max:30',
+            'description' => 'sometimes|max:100',
+        ]);
+
+        $material = new Material;
+
+        $material->title = $request->input('title');
+        $material->inventory_number = $request->input('inventory_number');
+        $material->date_start = $request->input('date_start');
+        $material->type = $request->input('type');
+        $material->amount = $request->input('amount');
+        $material->price = $request->input('price');
+        $material->sum = $material->amount * $material->price;
+        $material->employee_id = $request->input('employee_id');
+        $material->score_id = $request->input('score_id');
+
+//        $material->description = $request->input('description');
+
+        $material->save();
+
+//        return redirect()->route('material');
+        return Redirect::back()->withErrors(["Material $material->title created"]);
+    }
+
+    public function delete_web($id): RedirectResponse
+    {
+        $data = Material::find($id);
+        $data->delete();
+//        return redirect()->route('home')->with('success', 'Material deleted');
+
+        return Redirect::back()->withErrors(["Material $id deleted"]);
+    }
+
+
     /**
      * Get all Materials
      * @return Material[]|Collection

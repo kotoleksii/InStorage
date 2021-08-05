@@ -17,6 +17,7 @@
             </a>
             <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
                 <a class="me-3 py-2 text-white text-decoration-none" href="/">Home</a>
+                <a class="me-3 py-2 text-white text-decoration-none" href="/materials">Materials</a>
                 <a class="me-3 py-2 text-white text-decoration-none" href="/about">About</a>
             </nav>
             <a class="btn btn-outline-warning" href="/review" >Reviews</a>

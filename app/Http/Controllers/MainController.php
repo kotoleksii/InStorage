@@ -3,22 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
-use App\Models\Employee;
-use App\Services\ValidationService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    private $validationService;
-
-    private $authService;
-
-    public function __construct (ValidationService $validationService)
-    {
-        $this->validationService = $validationService;
-    }
-
     public function home()
     {
         return view('home');
@@ -37,9 +26,9 @@ class MainController extends Controller
     }
 
 
-    public function review_check(Request $request, ValidationService $validationService): RedirectResponse
+    public function review_check(Request $request): RedirectResponse
     {
-        $valid = $request->validate([
+       $request->validate([
             'email' => 'required|min:4|max:100',
             'subject' => 'required|min:4|max:100',
             'message' => 'required|min:15|max:500',

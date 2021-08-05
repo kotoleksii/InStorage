@@ -6,7 +6,7 @@ use App\Models\Employee;
 use App\Services\ValidationService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 
 class EmployeeController extends Controller

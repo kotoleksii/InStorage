@@ -10,7 +10,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @method static create(array $check)
  * @method exists()
+ * @method static find($id)
  * @property mixed sum
+ * @property mixed inventory_number
+ * @property mixed title
+ * @property mixed date_start
+ * @property mixed type
+ * @property mixed amount
+ * @property mixed price
+ * @property mixed employee_id
+ * @property mixed score_id
  */
 class Material extends Model
 {
