@@ -42,7 +42,7 @@ class MaterialController extends Controller
 
         $material->title = $request->input('title');
         $material->inventory_number = $request->input('inventory_number');
-        $material->date_start = $request->input('date_start');
+        $material->date_start = date("Y-m-d",  strtotime('01-'. $request-> input('date_start')));
         $material->type = $request->input('type');
         $material->amount = $request->input('amount');
         $material->price = $request->input('price');
@@ -58,6 +58,33 @@ class MaterialController extends Controller
         return Redirect::back()->withErrors(["Material $material->title created"]);
     }
 
+    public function show_web($id)
+    {
+        $data = Material::find($id);
+
+        return view('edit', [
+            'data'=>$data,
+            'scores' => Score::all(),
+            'employees' => Employee::all(),
+        ]);
+    }
+
+    public function update_web(Request $request): RedirectResponse
+    {
+        $data = Material::find($request->id);
+        $data->title = $request->title;
+        $data->inventory_number = $request->inventory_number;
+        $data->date_start = $request->date_start;
+        $data->amount = $request->amount;
+        $data->price = $request->price;
+        $data->type = $request->type;
+
+        $data->save();
+
+        return Redirect::back();
+
+    }
+
     public function delete_web($id): RedirectResponse
     {
         $data = Material::find($id);
@@ -66,7 +93,6 @@ class MaterialController extends Controller
 
         return Redirect::back()->withErrors(["Material $id deleted"]);
     }
-
 
     /**
      * Get all Materials

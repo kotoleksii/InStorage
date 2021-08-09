@@ -23,8 +23,8 @@
 
                     <div class="row">
                         <div class="col-md-7 mb-2">
-                            <select class="form-select" name="employee_select" aria-label="Employee list">
-                                <option selected>Select Employee</option>
+                            <select name="employee_select" aria-label="Employee list">
+                                <option value="">Select Employee</option>
                                     @foreach($employees as $employee)
                                         <option value="{{$employee->id}}">{{$employee->id}} {{$employee->description}}</option>
                                 @endforeach
@@ -32,8 +32,8 @@
                         </div>
 
                         <div class="col-md-3 mb-2">
-                            <select class="form-select" name="score_select" aria-label="Employee list">
-                                <option selected>Select Score</option>
+                            <select name="score_select" aria-label="Employee list">
+                                <option value="">Select Score</option>
                                 @foreach($scores as $score)
                                     <option value="{{$score->id}}">{{$score->id}} {{$score->title}}</option>
                                 @endforeach
@@ -66,6 +66,7 @@
 
                     <br>
 
+                    @if ($_GET["employee_select"]??null && $_GET["score_select"]??null)
                     <div class="col-xs-1 text-center">
                     <h1>Materials</h1>
                     @foreach($employees->where('id', '=', $_GET["employee_select"]??null) as $employee_title)
@@ -97,7 +98,7 @@
                         </thead>
                         <tbody>
 
-                        @if ($_GET["employee_select"]??null && $_GET["score_select"]??null)
+{{--                        @if ($_GET["employee_select"]??null && $_GET["score_select"]??null)--}}
                         @foreach($materials
                                     -> where('employee_id', '=', $_GET["employee_select"])
                                     -> where('score_id', '=', $_GET["score_select"]) as $material)
@@ -154,29 +155,43 @@
                                                 <label for="title" class="form-label">Title</label>
                                                 <input type="text" name="title" id="title" class="form-control">
                                             </div>
-                                            <div class="mb-2">
-                                                <label for="inventory_number" class="form-label">Inventory Number</label>
-                                                <input type="text" name="inventory_number" id="inventory_number" class="form-control">
+                                            <div class="row">
+                                                <div class="col-sm-12 mb-2">
+                                                    <div class="row">
+                                                        <div class="col-4 col-sm-7">
+                                                            <label for="inventory_number" class="form-label">Inventory Number</label>
+                                                            <input type="text" name="inventory_number" id="inventory_number" class="form-control">
+                                                        </div>
+                                                        <div class="col-4 col-sm-5">
+                                                            <label for="date_start" class="form-label">Date Start</label>
+{{--                                                            <input type="text" name="date_start" id="date_start" class="form-control">--}}
+
+                                                        <!-- Date Picker Input -->
+                                                            <input type="text" class="form-control" name="date_start" id="date_start"/>
+                                                       <!-- DEnd ate Picker Input -->
+
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="col-sm-12 mb-2">
                                                     <div class="row">
+
                                                         <div class="col-4 col-sm-5">
-                                                            <label for="date_start" class="form-label">Date Start</label>
-                                                            <input type="text" name="date_start" id="date_start" class="form-control">
+                                                            <label for="price" class="form-label">Price</label>
+                                                            <input type="text" name="price" id="price" class="form-control">
                                                         </div>
+
                                                         <div class="col-4 col-sm-4">
                                                             <label for="amount" class="form-label">Amount</label>
                                                             <input type="text" name="amount" id="amount" class="form-control">
                                                         </div>
-{{--                                                        <div class="col-4 col-sm-3">--}}
-{{--                                                            <label for="type" class="form-label">Type</label>--}}
-{{--                                                            <input type="text" name="type" id="type" class="form-control">--}}
-{{--                                                        </div>--}}
+
                                                         <div class="col-4 col-sm-3">
                                                             <label for="type" class="form-label">Type</label>
-                                                            <select class="form-select" name="type" id="type" aria-label="Type list">
+                                                            <select name="type" id="type" aria-label="Type list">
                                                                 <option>шт.</option>
                                                                 <option>компл.</option>
                                                                 <option>м.</option>
@@ -191,31 +206,16 @@
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-sm-12 mb-2">
-                                                    <div class="row">
-                                                        <div class="col-4 col-sm-6">
-                                                            <label for="price" class="form-label">Price</label>
-                                                            <input type="text" name="price" id="price" class="form-control">
-                                                        </div>
-                                                        <div class="col-4 col-sm-6">
-                                                            <label for="sum" class="form-label">Sum</label>
-                                                            <input type="text" name="sum" id="sum" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
                                                 <div class="col-sm-12 mb-4">
                                                     <div class="row">
                                                         <div class="col-4 col-sm-7">
                                                             <label for="employee_id" class="form-label">Employee</label>
 {{--                                                            <input type="text" name="employee_id" id="employee_id" class="form-control">--}}
 
-                                                            <select class="form-select" name="employee_id" id="employee_id" aria-label="Employee list">
-                                                                <option selected>Select Employee</option>
+                                                            <select name="employee_id" id="employee_id" aria-label="Employee list">
+                                                                <option value="">Select Employee</option>
                                                                 @foreach($employees as $employee)
-                                                                    <option value="{{$employee->id}}">{{$employee->id}} {{$employee->description}}</option>
+                                                                    <option value="{{$employee->id}}">{{$employee->description}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -223,10 +223,10 @@
                                                             <label for="score_id" class="form-label">Score</label>
 {{--                                                            <input type="text" name="score_id" id="score_id" class="form-control">--}}
 
-                                                            <select class="form-select" name="score_id" id="score_id" aria-label="Employee list">
-                                                                <option selected>Select Score</option>
+                                                            <select name="score_id" id="score_id" aria-label="Employee list">
+                                                                <option value="">Select Score</option>
                                                                 @foreach($scores as $score)
-                                                                    <option value="{{$score->id}}">{{$score->id}} {{$score->title}}</option>
+                                                                    <option value="{{$score->id}}">{{$score->title}}</option>
                                                                 @endforeach
                                                             </select>
 
@@ -246,4 +246,28 @@
                             </div>
                     </div>
                 </div>
+
+                    <!-- Modal Update -->
+
+
+
+
+                    <script>
+                        $(document).ready(function () {
+                            $('select').selectize({
+                                // sortField: 'text'
+                            }); }
+                        );
+                    </script>
+
+                    <script type="text/javascript">
+                        $("#date_start").datepicker( {
+                            format: "mm-yyyy",
+                            startView: "months",
+                            minViewMode: "months",
+                            autoclose: true,
+                        });
+
+                    </script>
+
     @endsection
