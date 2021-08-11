@@ -28,6 +28,7 @@ Route::group(['prefix' => 'materials'], function(){
     Route::get('edit/{material}', [MaterialController::class, 'show_web']);
     Route::post('edit/{material}', [MaterialController::class, 'update_web']);
     Route::get('delete/{material}', [MaterialController::class, 'delete_web']);
+    Route::get('/overview', [MaterialController::class, 'get_overview']);
 });
 
 //Route::get('/user/{id}/{name}', function ($id, $name) {

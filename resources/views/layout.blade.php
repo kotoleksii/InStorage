@@ -17,7 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css">
 </head>
 <body class="bg-dark text-white">
 
@@ -36,19 +36,41 @@
         <div class="row">
             <div class="col-md-3">
 
-            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
-                <ul class="nav nav-pills flex-column mb-auto">
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 240px;">
+
+                <ul class="nav nav-pills flex-column mb-auto list-unstyled ps-0">
                     <li class="nav-item">
                         <a href="/" class="nav-link active" aria-current="page">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
                             Home
                         </a>
                     </li>
-                    <li>
-                        <a href="/materials" class="nav-link text-white">
+
+                    <li class="mb-1">
+                        <a href="#collapseExample" class="nav-link text-white align-items-center rounded" data-bs-toggle="collapse" data-bs-target="#collapseExample" role="button" aria-expanded="true">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-                            Materials
+                                Materials
                         </a>
+                        <div class="collapse show text-white" id="collapseExample">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li>
+                                    <a href="/materials/overview" class="nav-link text-white">
+                                        Overview
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" class="nav-link text-white" data-bs-toggle="modal" data-bs-target="#createModal">
+                                        Create
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/materials" class="nav-link text-white">
+                                       Find
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
                     </li>
                     <li>
                         <a href="#" class="nav-link text-white">
@@ -94,6 +116,24 @@
 {{--            </div>--}}
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js" ></script>
+        <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
 
+{{--        <script>--}}
+{{--            $(document).ready(function () {--}}
+{{--                $('select').selectize({--}}
+{{--                    // sortField: 'text'--}}
+{{--                }); }--}}
+{{--            );--}}
+{{--        </script>--}}
+
+        <script type="text/javascript">
+            $("#date_start").datepicker( {
+                format: "mm-yyyy",
+                startView: "months",
+                minViewMode: "months",
+                autoclose: true,
+            });
+        </script>
 </body>
 </html>

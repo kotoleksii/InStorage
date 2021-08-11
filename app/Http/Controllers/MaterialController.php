@@ -25,6 +25,15 @@ class MaterialController extends Controller
         ]);
     }
 
+    public function get_overview()
+    {
+        return view('overview', [
+            'materials' => $this->getAll(),
+            'employees' => Employee::all(),
+            'scores' => Score::all(),
+        ]);
+    }
+
     /**
      * Create material on web site form
      *
@@ -62,7 +71,7 @@ class MaterialController extends Controller
     {
         $data = Material::find($id);
 
-        return view('material', [
+        return view('edit', [
             'data'=>$data,
             'scores' => Score::all(),
             'employees' => Employee::all(),
@@ -74,7 +83,9 @@ class MaterialController extends Controller
         $data = Material::find($request->id);
         $data->title = $request->title;
         $data->inventory_number = $request->inventory_number;
-        $data->date_start = $request->date_start;
+
+        $data->date_start = date("Y-m-d",  strtotime('01-'. $request-> input('date_start')));
+//        $data->date_start = $request->date_start;
         $data->amount = $request->amount;
         $data->price = $request->price;
         $data->type = $request->type;
