@@ -1,4 +1,4 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-dark">
             <div class="card shadow modal-body bg-dark rounded">
@@ -55,7 +55,8 @@
 
                                         <div class="col-4 col-sm-3">
                                             <label for="type" class="form-label">Type</label>
-                                            <select name="type" id="type" aria-label="Type list" value="{{$data["type"]}}">
+                                            <select name="type" id="type" aria-label="Type list">
+                                                <option>{{$data["type"]}}</option>
                                                 <option>шт.</option>
                                                 <option>компл.</option>
                                                 <option>м.</option>
@@ -74,23 +75,17 @@
                                     <div class="row">
                                         <div class="col-4 col-sm-7">
                                             <label for="employee_id" class="form-label">Employee</label>
-{{--                                                            <input type="text" name="employee_id" id="employee_id" class="form-control">--}}
-
-                                            <select name="employee_id" id="employee_id" value="{{$data["employee_id"]}}" aria-label="Employee list">
-                                                <option value="">Select Employee</option>
-                                                @foreach($employees as $employee)
-                                                    <option value="{{$employee->id}}"> {{$employee->description}}</option>
+                                            <select name="employee_id" id="employee_id" aria-label="Employee list" disabled>
+                                                @foreach($employees->where('id', '=', $data["employee_id"]) as $employee)
+                                                    <option>{{$employee->id}} {{$employee->description}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="col-4 col-sm-5">
                                             <label for="score_id" class="form-label">Score</label>
-{{--                                                            <input type="text" name="score_id" id="score_id" class="form-control">--}}
-
-                                            <select name="score_id" id="score_id" value="{{$data["score_id"]}}" aria-label="Employee list">
-                                                <option value="">Select Score</option>
-                                                @foreach($scores as $score)
-                                                    <option value="{{$score->id}}">{{$score->title}}</option>
+                                            <select name="score_id" id="score_id" aria-label="Employee list" disabled>
+                                                @foreach($scores->where('id', '=', $data["score_id"]) as $score)
+                                                    <option>{{$score->id}} {{$score->title}}</option>
                                                 @endforeach
                                             </select>
 
@@ -100,7 +95,6 @@
                             </div>
 
                             <div class="d-grid gap-2 col-12">
-                                {{--                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--}}
                                 <button type="submit" class="btn btn-outline-success btn-lg">Update</button>
                             </div>
 

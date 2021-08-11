@@ -62,7 +62,7 @@ class MaterialController extends Controller
     {
         $data = Material::find($id);
 
-        return view('edit', [
+        return view('material', [
             'data'=>$data,
             'scores' => Score::all(),
             'employees' => Employee::all(),
