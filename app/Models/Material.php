@@ -43,15 +43,27 @@ class Material extends Model
         'created_at',
         'updated_at',
         'sum',
+        'price',
     ];
 
     protected $appends = [
         'total_sum_hr',
+        'price_hr'
     ];
+
+    public function getPriceHrAttribute()
+    {
+        return $this->price / 100;
+    }
 
     public function getTotalSumHrAttribute()
     {
         return $this->sum / 100;
+    }
+
+    public function setPriceHrAttribute(float $val)
+    {
+        $this->price = $val * 100;
     }
 
     public function setTotalSumHrAttribute(float $val)

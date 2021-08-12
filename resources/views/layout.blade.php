@@ -18,6 +18,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css">
+
 </head>
 <body class="bg-dark text-white">
 
@@ -26,11 +27,11 @@
                 <span class="fs-4 text-white">InStorage</span>
             </a>
             <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                <a class="me-3 py-2 text-white text-decoration-none" href="/">Home</a>
-                <a class="me-3 py-2 text-white text-decoration-none" href="/materials">Materials</a>
-                <a class="me-3 py-2 text-white text-decoration-none" href="/about">About</a>
+                <a class="me-3 py-2 text-white text-decoration-none" href="{{action([\App\Http\Controllers\MainController::class, 'home'])}}">Home</a>
+                <a class="me-3 py-2 text-white text-decoration-none" href="{{action([\App\Http\Controllers\MaterialController::class, 'get_web'])}}">Materials</a>
+                <a class="me-3 py-2 text-white text-decoration-none" href="{{action([\App\Http\Controllers\MainController::class, 'about'])}}">About</a>
             </nav>
-            <a class="btn btn-outline-warning" href="/review" >Reviews</a>
+            <a class="btn btn-outline-warning" href="{{action([\App\Http\Controllers\MainController::class, 'review'])}}" >Reviews</a>
         </div>
 
         <div class="row">
@@ -40,7 +41,7 @@
 
                 <ul class="nav nav-pills flex-column mb-auto list-unstyled ps-0">
                     <li class="nav-item">
-                        <a href="/" class="nav-link active" aria-current="page">
+                        <a href="{{action([\App\Http\Controllers\MainController::class, 'home'])}}" class="nav-link active" aria-current="page">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
                             Home
                         </a>
@@ -54,7 +55,7 @@
                         <div class="collapse show text-white" id="collapseExample">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li>
-                                    <a href="/materials/overview" class="nav-link text-white">
+                                    <a href="{{action([\App\Http\Controllers\MaterialController::class, 'get_overview'])}}" class="nav-link text-white">
                                         Overview
                                     </a>
                                 </li>
@@ -64,7 +65,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/materials" class="nav-link text-white">
+                                    <a href="{{action([\App\Http\Controllers\MaterialController::class, 'get_web'])}}" class="nav-link text-white">
                                        Find
                                     </a>
                                 </li>
@@ -118,6 +119,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js" ></script>
         <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
+
+
 
 {{--        <script>--}}
 {{--            $(document).ready(function () {--}}

@@ -39,6 +39,8 @@
 {{--                    <th scope="col">Options</th>--}}
                     <th scope="col">Employee</th>
                     <th scope="col">Score</th>
+                    <th scope="col">Created</th>
+                    <th scope="col">Updated</th>
 
                 </tr>
                 </thead>
@@ -63,6 +65,9 @@
                             <td>{{$score->title}}</td>
                         @endforeach
 
+                        <td>{{$material->created_at}}</td>
+                        <td>{{$material->updated_at}}</td>
+
                     </tr>
                 @endforeach
                 </tbody>
@@ -73,7 +78,7 @@
             $(document).ready(function() {
                 $('#datatable').DataTable( {
                     "scrollX": true,
-                    "order": [[ 0, "desc" ]],
+                    // "order": [[ 0, "desc" ]],
                 } );
             } );
         </script>

@@ -80,15 +80,15 @@ class MaterialController extends Controller
 
     public function update_web(Request $request): RedirectResponse
     {
-        $data = Material::find($request->id);
-        $data->title = $request->title;
-        $data->inventory_number = $request->inventory_number;
+        $data = Material::find($request->input('id'));
+        $data->title = $request->input('title');
+        $data->inventory_number = $request->input('inventory_number');
 
         $data->date_start = date("Y-m-d",  strtotime('01-'. $request-> input('date_start')));
 //        $data->date_start = $request->date_start;
-        $data->amount = $request->amount;
-        $data->price = $request->price;
-        $data->type = $request->type;
+        $data->amount = $request->input('amount');
+        $data->price = $request->input('price');
+        $data->type = $request->input('type');
 
         $data->save();
 
