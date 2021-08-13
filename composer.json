@@ -12,7 +12,9 @@
         "laravel/framework": "^8.40",
         "laravel/passport": "^10.1",
         "laravel/tinker": "^2.5",
-      "ext-json": "*"
+      "ext-json": "*",
+      "ext-curl": "*",
+      "ext-dom": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

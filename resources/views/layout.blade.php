@@ -19,84 +19,89 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css">
 
+{{--    <link rel="stylesheet" href="{{ asset('/css/moving.css') }}">--}}
+
+    <script src="//cdn.jsdelivr.net/npm/jquery.marquee@1.6.0/jquery.marquee.min.js" type="text/javascript"></script>
+
 </head>
 <body class="bg-dark text-white">
 
-        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom">
-            <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-                <span class="fs-4 text-white">InStorage</span>
-            </a>
-            <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                <a class="me-3 py-2 text-white text-decoration-none" href="{{action([\App\Http\Controllers\MainController::class, 'home'])}}">Home</a>
-                <a class="me-3 py-2 text-white text-decoration-none" href="{{action([\App\Http\Controllers\MaterialController::class, 'get_web'])}}">Materials</a>
-                <a class="me-3 py-2 text-white text-decoration-none" href="{{action([\App\Http\Controllers\MainController::class, 'about'])}}">About</a>
-            </nav>
-            <a class="btn btn-outline-warning" href="{{action([\App\Http\Controllers\MainController::class, 'review'])}}" >Reviews</a>
-        </div>
 
-        <div class="row">
-            <div class="col-md-3">
 
-            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 240px;">
+{{--        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom">--}}
+{{--            <a href="/" class="d-flex align-items-center text-dark text-decoration-none">--}}
+{{--                <span class="fs-4 text-white">InStorage</span>--}}
+{{--            </a>--}}
+{{--            <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">--}}
+{{--                <a class="me-3 py-2 text-white text-decoration-none" href="{{action([\App\Http\Controllers\MainController::class, 'home'])}}">Home</a>--}}
+{{--                <a class="me-3 py-2 text-white text-decoration-none" href="{{action([\App\Http\Controllers\MaterialController::class, 'get_web'])}}">Materials</a>--}}
+{{--                <a class="me-3 py-2 text-white text-decoration-none" href="{{action([\App\Http\Controllers\MainController::class, 'about'])}}">About</a>--}}
+{{--            </nav>--}}
+{{--            <a class="btn btn-outline-warning" href="{{action([\App\Http\Controllers\MainController::class, 'review'])}}" >Reviews</a>--}}
+{{--        </div>--}}
 
+    <div class="row col-md-12">
+        <div class="col-md-2 mx-3 mt-3 me-0">
+
+            <div class="d-flex flex-column flex-shrink-0 text-white bg-dark">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+{{--                    <i class="bi-columns" style="font-size: 1.5rem;" role="img"></i>--}}
+                    <span class="fs-4 nav-link text-white px-1">InStorage</span>
+                </a>
+                <hr>
                 <ul class="nav nav-pills flex-column mb-auto list-unstyled ps-0">
                     <li class="nav-item">
                         <a href="{{action([\App\Http\Controllers\MainController::class, 'home'])}}" class="nav-link active" aria-current="page">
-                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                            <i class="bi-house-door-fill" role="img"></i>
                             Home
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{action([\App\Http\Controllers\MaterialController::class, 'get_web'])}}" class="nav-link text-white">
+                            <i class="bi-briefcase-fill" role="img"></i>
+                            Materials
+                        </a>
+                    </li>
 
-                    <li class="mb-1">
-                        <a href="#collapseExample" class="nav-link text-white align-items-center rounded" data-bs-toggle="collapse" data-bs-target="#collapseExample" role="button" aria-expanded="true">
-                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-                                Materials
-                        </a>
-                        <div class="collapse show text-white" id="collapseExample">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li>
-                                    <a href="{{action([\App\Http\Controllers\MaterialController::class, 'get_overview'])}}" class="nav-link text-white">
-                                        Overview
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" class="nav-link text-white" data-bs-toggle="modal" data-bs-target="#createModal">
-                                        Create
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{action([\App\Http\Controllers\MaterialController::class, 'get_web'])}}" class="nav-link text-white">
-                                       Find
-                                    </a>
-                                </li>
-                            </ul>
+{{--                    <li class="mb-1">--}}
+{{--                        <a href="#collapseExample" class="nav-link text-white align-items-center rounded" data-bs-toggle="collapse" data-bs-target="#collapseExample" role="button" aria-expanded="true">--}}
+{{--                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>--}}
+{{--                                Materials--}}
+{{--                        </a>--}}
+{{--                        <div class="collapse show text-white" id="collapseExample">--}}
+{{--                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">--}}
+{{--                                <li>--}}
+{{--                                    <a href="{{action([\App\Http\Controllers\MaterialController::class, 'get_overview'])}}" class="nav-link text-white">--}}
+{{--                                        Overview--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="" class="nav-link text-white" data-bs-toggle="modal" data-bs-target="#createModal">--}}
+{{--                                        Create--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="{{action([\App\Http\Controllers\MaterialController::class, 'get_web'])}}" class="nav-link text-white">--}}
+{{--                                       Find--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
 
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link text-white">
-                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-                            Orders
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link text-white">
-                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-                            Products
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link text-white">
-                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-                            Customers
-                        </a>
-                    </li>
+{{--                        </div>--}}
+{{--                    </li>--}}
                 </ul>
                 <hr>
+
+                <div class="marquee" style='overflow:hidden'>
+                        <pre class="mb-0">
+                            {{\App\Services\CurrencyService::output_currencies()}}
+                        </pre>
+                </div>
+
                 <div class="dropdown">
                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                        <strong>mdo</strong>
+                        <img src="https://lh3.googleusercontent.com/a-/AOh14GjDolQFVZiV8o5ceYRox7vuRGYHjJzQ6LksIG9q=s288-p-rw-no" alt="" width="32" height="32" class="rounded-circle me-2">
+                        <strong>kot.oleksii</strong>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                         <li><a class="dropdown-item" href="#">New project...</a></li>
@@ -109,8 +114,11 @@
             </div>
         </div>
 
+{{--        <div class="col-md-1 ms-0 me-0 ps-0 pe-0">--}}
+{{--        </div>--}}
+
 {{--            <div class="container py-3">--}}
-            <div class="col-md-8 p-3">
+            <div class="col-md-9 center-block py-4 ms-5">
                 @yield('main_content')
             </div>
         </div>
@@ -121,6 +129,18 @@
         <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
 
 
+    <script>
+        $(function() {
+            $('.marquee').marquee({
+                duration: 15000,
+                gap: 0,
+                delayBeforeStart: 0,
+                duplicated: true,
+                pauseOnHover: true,
+                startVisible: true,
+            });
+        });
+    </script>
 
 {{--        <script>--}}
 {{--            $(document).ready(function () {--}}

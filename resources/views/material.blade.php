@@ -381,7 +381,7 @@
                         $(document).ready(function() {
                             let table = $('#datatable').DataTable();
 
-                            $('#datatable tbody').on('click', 'tr', function () {
+                            $('#datatable tbody').on('dblclick', 'tr', function () {
                                 let data = table.row(this).data();
                                 alert( 'You clicked on '+data[0]+'\'s row' );
                             } );
