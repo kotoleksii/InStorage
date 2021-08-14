@@ -31,26 +31,21 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header">
+        <div class="offcanvas offcanvas-start bg-dark w-50" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header pb-0">
+                <a href="/" class="text-decoration-none">
                 <span class="fs-4 nav-link text-white px-1">InStorage</span>
+                </a>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item">
-                       aaaaa
-                    </li>
-                    <li class="nav-item">
-                        ssssss
-                    </li>
-                </ul>
+            <div class="offcanvas-body pt-0">
+               @include('sidebar')
             </div>
         </div>
     </div>
 </nav>
 
-    <div class="row col-md-12">
+    <div class="row col-md-12" id="sidebar">
         <div class="col-md-2 mx-3 mt-3 me-0 d-none d-sm-block">
 
             <div class="d-flex flex-column flex-shrink-0 text-white bg-dark">
@@ -159,6 +154,7 @@
 {{--                }); }--}}
 {{--            );--}}
 {{--        </script>--}}
+
 
         <script type="text/javascript">
             $("#date_start").datepicker( {
