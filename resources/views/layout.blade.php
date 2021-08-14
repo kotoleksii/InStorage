@@ -26,22 +26,32 @@
 </head>
 <body class="bg-dark text-white">
 
-
-
-{{--        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom">--}}
-{{--            <a href="/" class="d-flex align-items-center text-dark text-decoration-none">--}}
-{{--                <span class="fs-4 text-white">InStorage</span>--}}
-{{--            </a>--}}
-{{--            <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">--}}
-{{--                <a class="me-3 py-2 text-white text-decoration-none" href="{{action([\App\Http\Controllers\MainController::class, 'home'])}}">Home</a>--}}
-{{--                <a class="me-3 py-2 text-white text-decoration-none" href="{{action([\App\Http\Controllers\MaterialController::class, 'get_web'])}}">Materials</a>--}}
-{{--                <a class="me-3 py-2 text-white text-decoration-none" href="{{action([\App\Http\Controllers\MainController::class, 'about'])}}">About</a>--}}
-{{--            </nav>--}}
-{{--            <a class="btn btn-outline-warning" href="{{action([\App\Http\Controllers\MainController::class, 'review'])}}" >Reviews</a>--}}
-{{--        </div>--}}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark pt-2 pb-0 d-sm-none d-md-block">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <span class="fs-4 nav-link text-white px-1">InStorage</span>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                       aaaaa
+                    </li>
+                    <li class="nav-item">
+                        ssssss
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
 
     <div class="row col-md-12">
-        <div class="col-md-2 mx-3 mt-3 me-0">
+        <div class="col-md-2 mx-3 mt-3 me-0 d-none d-sm-block">
 
             <div class="d-flex flex-column flex-shrink-0 text-white bg-dark">
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
