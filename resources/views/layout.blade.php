@@ -24,110 +24,80 @@
     <script src="//cdn.jsdelivr.net/npm/jquery.marquee@1.6.0/jquery.marquee.min.js" type="text/javascript"></script>
 
 </head>
-<body class="bg-dark text-white">
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark pt-2 pb-0 d-sm-none d-md-block">
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-start bg-dark w-50" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header pb-0">
-                <a href="/" class="text-decoration-none">
-                <span class="fs-4 nav-link text-white px-1">InStorage</span>
-                </a>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body pt-0">
-               @include('sidebar')
-            </div>
-        </div>
-    </div>
-</nav>
-
-    <div class="row col-md-12" id="sidebar">
-        <div class="col-md-2 mx-3 mt-3 me-0 d-none d-sm-block">
-
-            <div class="d-flex flex-column flex-shrink-0 text-white bg-dark">
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-{{--                    <i class="bi-columns" style="font-size: 1.5rem;" role="img"></i>--}}
-                    <span class="fs-4 nav-link text-white px-1">InStorage</span>
-                </a>
-                <hr>
-                <ul class="nav nav-pills flex-column mb-auto list-unstyled ps-0">
-                    <li class="nav-item">
-                        <a href="{{action([\App\Http\Controllers\MainController::class, 'home'])}}" class="nav-link active" aria-current="page">
-                            <i class="bi-house-door-fill" role="img"></i>
-                            Home
+<body class="text-white bg-dark">
+    <main>
+        <div class="container-fluid">
+            <!-- Start NAV Mobile Menu -->
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark pt-2 pb-0 d-sm-none d-md-block">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-start bg-dark w-50" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header pb-0">
+                        <a href="/" class="text-decoration-none">
+                            <span class="fs-4 nav-link text-white px-1">InStorage</span>
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{action([\App\Http\Controllers\MaterialController::class, 'get_web'])}}" class="nav-link text-white">
-                            <i class="bi-briefcase-fill" role="img"></i>
-                            Materials
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body pt-0">
+                        @include('sidebar')
+                    </div>
+                </div>
+            </nav>
+            <!-- End NAV Mobile Menu -->
+            <div class="row">
+                <!-- Start Sidebar -->
+                <div class="col-md-2 ms-3 mt-3 me-0 d-none d-sm-block">
+                    <div class="d-flex flex-column flex-shrink-0 text-white bg-dark">
+                        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                            <span class="fs-4 nav-link text-white px-1">InStorage</span>
                         </a>
-                    </li>
+                        <hr>
+                        <ul class="nav nav-pills flex-column mb-auto list-unstyled ps-0">
+                            <li class="nav-item">
+                                <a href="{{action([\App\Http\Controllers\MainController::class, 'home'])}}" class="nav-link active" aria-current="page">
+                                    <i class="bi-house-door-fill" role="img"></i>
+                                    Home
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{action([\App\Http\Controllers\MaterialController::class, 'get_web'])}}" class="nav-link text-white">
+                                    <i class="bi-briefcase-fill" role="img"></i>
+                                    Materials
+                                </a>
+                            </li>
+                        </ul>
+                        <hr>
 
-{{--                    <li class="mb-1">--}}
-{{--                        <a href="#collapseExample" class="nav-link text-white align-items-center rounded" data-bs-toggle="collapse" data-bs-target="#collapseExample" role="button" aria-expanded="true">--}}
-{{--                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>--}}
-{{--                                Materials--}}
-{{--                        </a>--}}
-{{--                        <div class="collapse show text-white" id="collapseExample">--}}
-{{--                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">--}}
-{{--                                <li>--}}
-{{--                                    <a href="{{action([\App\Http\Controllers\MaterialController::class, 'get_overview'])}}" class="nav-link text-white">--}}
-{{--                                        Overview--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="" class="nav-link text-white" data-bs-toggle="modal" data-bs-target="#createModal">--}}
-{{--                                        Create--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="{{action([\App\Http\Controllers\MaterialController::class, 'get_web'])}}" class="nav-link text-white">--}}
-{{--                                       Find--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                            </ul>--}}
+                        <div class="marquee" style='overflow:hidden'>
+                                <pre class="mb-0">
+                                    {{\App\Services\CurrencyService::output_currencies()}}
+                                </pre>
+                        </div>
 
-{{--                        </div>--}}
-{{--                    </li>--}}
-                </ul>
-                <hr>
-
-                <div class="marquee" style='overflow:hidden'>
-                        <pre class="mb-0">
-                            {{\App\Services\CurrencyService::output_currencies()}}
-                        </pre>
+                        <div class="dropdown">
+                            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="https://lh3.googleusercontent.com/a-/AOh14GjDolQFVZiV8o5ceYRox7vuRGYHjJzQ6LksIG9q=s288-p-rw-no" alt="" width="32" height="32" class="rounded-circle me-2">
+                                <strong>kot.oleksii</strong>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Sign out</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+                <!-- End Sidebar -->
 
-                <div class="dropdown">
-                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://lh3.googleusercontent.com/a-/AOh14GjDolQFVZiV8o5ceYRox7vuRGYHjJzQ6LksIG9q=s288-p-rw-no" alt="" width="32" height="32" class="rounded-circle me-2">
-                        <strong>kot.oleksii</strong>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
-                    </ul>
+                <!-- Start Content -->
+                <div class="col-md-9 col-sm-10 col-lg-9 col-10 py-4 ms-5">
+                    @yield('main_content')
                 </div>
+                <!-- End Content -->
             </div>
         </div>
-
-{{--        <div class="col-md-1 ms-0 me-0 ps-0 pe-0">--}}
-{{--        </div>--}}
-
-{{--            <div class="container py-3">--}}
-            <div class="col-md-9 center-block py-4 ms-5">
-                @yield('main_content')
-            </div>
-        </div>
-{{--            </div>--}}
+    </main>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js" ></script>

@@ -21,7 +21,7 @@
                 <form method="get" action="">
                     <div class="nav nav-pills flex-column mb-auto list-unstyled ps-0">
                         <a href="#collapseExample1" class="text-center nav-link text-white rounded pt-0" data-bs-toggle="collapse" data-bs-target="#collapseExample1" role="button" aria-expanded="true">
-                            <h1>Materials</h1>
+                            <h1 data-bs-toggle="tooltip" title="Press to Hide Options">Materials</h1>
                         </a>
                     </div>
                     <div class="collapse show text-white" id="collapseExample1">
