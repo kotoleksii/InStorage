@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @method all()
+ */
 class MaterialController extends Controller
 {
     public function get_web()

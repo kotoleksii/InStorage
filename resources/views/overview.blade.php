@@ -46,7 +46,30 @@
                 </thead>
                 <tbody>
 
-                @foreach($materials as $material)
+{{--                {{dd(\App\Models\Material::--}}
+{{--                    leftJoin('employees', 'materials.employee_id', '=', 'employees.id')--}}
+{{--                    ->leftJoin('scores', 'materials.score_id', '=', 'scores.id')--}}
+{{--                    ->select('materials.*','employees.description as employee', 'scores.title as score_title')--}}
+{{--                    ->get())--}}
+{{--                }}--}}
+
+
+
+                    @foreach(\App\Models\Material::
+                    leftJoin('employees', 'materials.employee_id', '=', 'employees.id')
+                    ->leftJoin('scores', 'materials.score_id', '=', 'scores.id')
+                    ->select('materials.*','employees.description as employee', 'scores.title as score_title')
+                    ->get() as $material)
+
+{{--                    @foreach(DB::table('materials')--}}
+{{--                                    ->leftJoin('employees', 'employees.id', '=', 'materials.employee_id')--}}
+{{--                                    ->leftJoin('scores', 'scores.id', '=', 'materials.score_id')--}}
+{{--                                    ->select('materials.*','employees.description', 'scores.title')--}}
+{{--                                    //->whereNull('deleted_at')--}}
+{{--                                    ->get() as $material)--}}
+
+
+{{--                @foreach($materials as $material)--}}
                     <tr>
                         <th scope="row">{{$material->id}}</th>
                         <td>{{$material->title}}</td>
@@ -54,16 +77,21 @@
                         <td>{{$material->date_start}}</td>
                         <td>{{$material->type}}</td>
                         <td>{{$material->amount}}</td>
-                        <td>{{$material->price}}</td>
+                        <td>{{$material->price_hr}}</td>
                         <td>{{$material->total_sum_hr}}</td>
 
-                        @foreach($employees->where('id', '=', $material->employee_id) as $employee)
-                        <td>{{$employee->description}}</td>
-                        @endforeach
+                        <td>{{$material->employee}}</td>
+                        <td>{{$material->score_title}}</td>
 
-                        @foreach($scores->where('id', '=', $material->score_id) as $score)
-                            <td>{{$score->title}}</td>
-                        @endforeach
+
+{{--                        @foreach($employees->where('id', '=', $material->employee_id) as $employee)--}}
+{{--                        <td>{{$employee->description}}</td>--}}
+{{--                        @endforeach--}}
+
+
+{{--                        @foreach($scores->where('id', '=', $material->score_id) as $score)--}}
+{{--                            <td>{{$score->title}}</td>--}}
+{{--                        @endforeach--}}
 
                         <td>{{$material->created_at}}</td>
                         <td>{{$material->updated_at}}</td>
