@@ -46,7 +46,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link link-light px-0 align-middle" data-bs-toggle="modal" data-bs-target="#createModal">
+                            <a href="{{action([\App\Http\Controllers\ScoreController::class, 'get_web'])}}" class="nav-link link-light px-0 align-middle">
+                                <i class="fs-4 bi-file-earmark-text" style="color:#35df91 !important"></i>
+                                <span class="ms-1 d-none d-sm-inline" style="color:#a1b6c8 !important">Scores</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{action([\App\Http\Controllers\EmployeeController::class, 'get_web'])}}" class="nav-link link-light px-0 align-middle">
                                 <i class="fs-4 bi-people" style="color:#ff6384 !important"></i>
                                 <span class="ms-1 d-none d-sm-inline" style="color:#a1b6c8 !important">Employees</span>
                             </a>
@@ -56,11 +62,11 @@
                     <hr>
 
                     <!-- Start Currency Prices Line -->
-                    <div class="marquee ms-1 " style='overflow:hidden; max-width: 122px;'>
-                            <pre class="mb-0 d-none d-sm-inline">
+{{--                    <div class="marquee ms-1 " style='overflow:hidden; max-width: 122px;'>--}}
+{{--                            <pre class="mb-0 d-none d-sm-inline">--}}
 {{--                                {{\App\Services\CurrencyService::output_currencies()}}--}}
-                            </pre>
-                    </div>
+{{--                            </pre>--}}
+{{--                    </div>--}}
                     <!-- End Currency Prices Line -->
 
                     <div class="dropdown pb-4">

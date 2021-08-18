@@ -10,6 +10,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static create(array $check)
  * @method exists()
  * @method static count()
+ * @method static find($id)
+ * @property mixed first_name
+ * @property mixed last_name
+ * @property mixed post
+ * @property mixed description
  */
 class Employee extends Model
 {

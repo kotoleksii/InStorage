@@ -31,10 +31,19 @@ class MaterialController extends Controller
     public function get_overview()
     {
         return view('overview', [
-            'materials' => $this->getAll(),
+            'materials' => $this->get_overview_table_data(),
             'employees' => Employee::all(),
             'scores' => Score::all(),
         ]);
+    }
+
+    public function get_overview_table_data()
+    {
+        return Material::
+            leftJoin('employees', 'materials.employee_id', '=', 'employees.id')
+            ->leftJoin('scores', 'materials.score_id', '=', 'scores.id')
+            ->select('materials.*','employees.description as employee', 'scores.title as score_title')
+            ->get();
     }
 
     /**

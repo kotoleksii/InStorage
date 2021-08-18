@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method exists()
  * @method static count()
  * @method static find($id)
+ * @property mixed title
+ * @property mixed description
  */
 class Score extends Model
 {

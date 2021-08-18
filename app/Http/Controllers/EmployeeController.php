@@ -6,11 +6,84 @@ use App\Models\Employee;
 use App\Services\ValidationService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
 
 class EmployeeController extends Controller
 {
+    public function get_web()
+    {
+        return view('employee', [
+            'employees' => $this->getAll(),
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function create_web(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'first_name' => 'required|min:2|max:30',
+            'last_name' => 'required|min:2|max:30',
+            'post' => 'required|min:4|max:30',
+        ]);
+
+        $employee = new Employee;
+
+        $employee->first_name = $request->input('first_name');
+        $employee->last_name = $request->input('last_name');
+        $employee->post = $request->input('post');
+
+        $full_name = $employee->first_name . ' ' . $employee->last_name;
+        $description = $full_name . ' - ' . $employee->post;
+
+        $employee->description = $description;
+
+        $employee->save();
+
+        return Redirect::back()->withErrors(["Employee $employee->description created"]);
+    }
+
+    public function show_web($id)
+    {
+        $data = Employee::find($id);
+
+        return view('edit', [
+            'data'=>$data,
+        ]);
+    }
+
+    public function update_web(Request $request): RedirectResponse
+    {
+        $data = Employee::find($request->input('id'));
+        $data->first_name = $request->input('first_name');
+        $data->last_name = $request->input('last_name');
+        $data->post = $request->input('post');
+
+        $full_name = $data->first_name . ' ' .  $data->last_name;
+        $description = $full_name . ' - ' . $data->post;
+
+        $data->description = $description;
+
+        $data->save();
+
+        return Redirect::back();
+    }
+
+    public function delete_web($id): RedirectResponse
+    {
+        $data = Employee::find($id);
+        $data->delete();
+
+        return Redirect::back()->withErrors(["Employee $id deleted"]);
+    }
+
+
     /**
      * Get all Employees
      * @return Employee[]|Collection

@@ -6,11 +6,38 @@ use App\Models\Score;
 use App\Services\ValidationService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
 class ScoreController extends Controller
 {
+    public function get_web()
+    {
+        return view('score', [
+            'scores' => $this->getAll(),
+        ]);
+    }
+
+    public function create_web(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'title' => 'required|min:4|max:30',
+            'description' => 'sometimes|min:10|max:255',
+        ]);
+
+        $score = new Score;
+
+        $score->title = $request->input('title');
+        $score->description = $request->input('description');
+
+        $score->save();
+
+        return Redirect::back()->withErrors(["Score $score->title created"]);
+    }
+
     /**
      * Get all Scores
      * @return Score[]|Collection

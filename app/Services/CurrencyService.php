@@ -40,7 +40,7 @@ class CurrencyService
         } else{
             echo "CURL is disabled";
         }
-        $currencies_array = ['USD','EUR'];
+        $currencies_array = ['USD','EUR','BTC'];
         $res = '';
 
         foreach($courses as $course){
@@ -55,17 +55,17 @@ class CurrencyService
     public static function output_currencies()
     {
         $currency_data = [
-            self::api_call_price("BTC", "USD"),
-            self::api_call_price("LTC", "USD"),
-            self::api_call_price("ZEC", "USD"),
-            self::api_call_price("DOT", "USD"),
-            self::api_call_price("DOGE", "USD"),
-            self::api_call_price("DASH", "USD"),
-            self::api_call_price("XLM", "USD"),
-            self::api_call_price("ADA", "USD"),
-            self::api_call_price("ETH", "USD"),
-            self::api_call_price("BCH", "USD"),
-            self::api_call_price("EOS", "USD"),
+//            self::api_call_price("BTC", "USD"),
+//            self::api_call_price("LTC", "USD"),
+//            self::api_call_price("ZEC", "USD"),
+//            self::api_call_price("DOT", "USD"),
+//            self::api_call_price("DOGE", "USD"),
+//            self::api_call_price("DASH", "USD"),
+//            self::api_call_price("XLM", "USD"),
+//            self::api_call_price("ADA", "USD"),
+//            self::api_call_price("ETH", "USD"),
+//            self::api_call_price("BCH", "USD"),
+//            self::api_call_price("EOS", "USD"),
 
             self::privat24_exchange_rates(),
         ];

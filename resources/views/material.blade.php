@@ -20,11 +20,13 @@
 {{--            <div class="col-md-8">--}}
                 <form method="get" action="">
                     <div class="nav nav-pills flex-column mb-auto list-unstyled ps-0">
-                        <a href="#collapseExample1" class="text-center nav-link text-white rounded pt-0" data-bs-toggle="collapse" data-bs-target="#collapseExample1" role="button" aria-expanded="true">
+                        <a href="#HideOptions" class="text-center nav-link text-white rounded pt-0" data-bs-toggle="collapse" data-bs-target="#HideOptions" role="button" aria-expanded="true">
                             <h1 data-bs-toggle="tooltip" title="Press to Hide Options">Materials</h1>
                         </a>
                     </div>
-                    <div class="collapse show text-white" id="collapseExample1">
+
+
+                    <div class="collapse show text-white" id="HideOptions">
                     <div class="row">
                             <div class="col-md-7 mb-2">
                                 <select name="employee_select" aria-label="Employee list">
@@ -65,9 +67,11 @@
                                 <div class="col-xs-1 text-center">
                                     <div class="alert alert-success">
                                         <h3>{{$employee_title->description}}</h3>
-                                        <h5>({{$score_title->title}})</h5>
+                                        <h4>{{$score_title->title}}</h4>
                                     </div>
                                 </div>
+
+                                <hr>
 
                                 <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" style="width:100%">
                                     <thead>
@@ -123,6 +127,8 @@
                                 </div>
                             </div>
 
+                            <hr>
+
                             <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" style="width:100%">
                                 <thead>
                                 <tr>
@@ -176,8 +182,11 @@
                             <div class="col-xs-1 text-center">
                                 <div class="alert alert-success">
                                     <h3>{{$score_title->title}}</h3>
+                                    <h4>{{$score_title->description}}</h4>
                                 </div>
                             </div>
+
+                            <hr>
 
                             <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" style="width:100%">
                                 <thead>
