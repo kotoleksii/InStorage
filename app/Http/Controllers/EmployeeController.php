@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
 
@@ -53,26 +54,41 @@ class EmployeeController extends Controller
     {
         $data = Employee::find($id);
 
-        return view('edit', [
+        return view('employee', [
             'data'=>$data,
         ]);
     }
 
     public function update_web(Request $request): RedirectResponse
     {
-        $data = Employee::find($request->input('id'));
-        $data->first_name = $request->input('first_name');
-        $data->last_name = $request->input('last_name');
-        $data->post = $request->input('post');
+//        $data = Employee::find($request->input('id'));
+//        $data->first_name = $request->input('first_name');
+//        $data->last_name = $request->input('last_name');
+//        $data->post = $request->input('post');
+//
+//        $full_name = $data->first_name . ' ' .  $data->last_name;
+//        $description = $full_name . ' - ' . $data->post;
+//
+//        $data->description = $description;
+//
+//        return dd($data);
+//
+//        $data->save();
+//
+//        return Redirect::back();
 
-        $full_name = $data->first_name . ' ' .  $data->last_name;
-        $description = $full_name . ' - ' . $data->post;
+        $updateEmployee = [
+            'id' => $request->employee_id,
+            'first_name' => $request->first_name,
+            'last_name' =>  $request->last_name,
+            'post' => $request->post,
+            'description' => "$request->first_name $request->last_name - $request->post",
+        ];
 
-        $data->description = $description;
+        Employee::where('id', $request->employee_id)->update($updateEmployee);
 
-        $data->save();
-
-        return Redirect::back();
+//        DB::table('employees')->where('id', $request->employee_id)->update($updateEmployee);
+        return Redirect::back()->withErrors("Employee $request->employee_id updated");
     }
 
     public function delete_web($id): RedirectResponse

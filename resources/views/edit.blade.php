@@ -7,13 +7,12 @@
 @section('main_content')
 
 {{--    <div class="container">--}}
-{{--<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">--}}
+{{--<div class="modal hide fade" id="updateMaterialModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">--}}
 {{--    <div class="modal-dialog modal-dialog-centered">--}}
 {{--        <div class="modal-content bg-dark">--}}
             <div class="card shadow modal-body bg-dark rounded">
                 <form action="" method="POST">
                     @csrf
-{{--                    @method('PUT')--}}
 
                     <input type="hidden" name="id" value="{{$data["id"]}}">
 

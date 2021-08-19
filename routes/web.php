@@ -36,9 +36,9 @@ Route::group(['prefix' => 'materials'], function(){
 Route::group(['prefix' => 'employees'], function(){
     Route::get('/', [EmployeeController::class, 'get_web']);
     Route::post('/check', [EmployeeController::class, 'create_web']);
-    Route::get('delete/{employee}', [EmployeeController::class, 'delete_web']);
-    Route::get('edit/{employee}', [EmployeeController::class, 'show_web']);
-    Route::post('edit/{employee}', [EmployeeController::class, 'update_web']);
+    Route::get('deleteEmployee/{employee}', [EmployeeController::class, 'delete_web'])->name('delete_employee');
+    //    Route::get('/{employee}', [EmployeeController::class, 'show_web']);
+    Route::post('updateEmployee', [EmployeeController::class, 'update_web'])->name('update_employee');
 });
 
 Route::group(['prefix' => 'scores'], function(){

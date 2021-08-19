@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method exists()
  * @method static count()
  * @method static find($id)
+ * @method static updateOrCreate(array $array, array $array1)
+ * @method static where(string $string, mixed $employee_id)
  * @property mixed first_name
  * @property mixed last_name
  * @property mixed post
