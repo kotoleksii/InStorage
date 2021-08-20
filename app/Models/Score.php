@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method exists()
  * @method static count()
  * @method static find($id)
+ * @method static where(string $string, mixed $input)
+ * @method static findOrFail(mixed $input)
  * @property mixed title
  * @property mixed description
  */

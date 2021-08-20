@@ -15,9 +15,88 @@
         </div>
     @endif
 
-    {{--    <div class="container">--}}
-    {{--        <div class="row">--}}
-    {{--            <div class="col-md-8">--}}
+    <!-- Start Modal Edit Employee -->
+    <div class="modal hide fade" id="updateEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="card shadow modal-body bg-dark rounded">
+                    <form action="{{route('update_employee')}}" method="POST">
+                        @csrf
+                        <input type="hidden" id="employee_id" name="employee_id" value="">
+                        <div class="p-2 mb-1 bg-dark rounded">
+                            <div class="card-body p-2">
+
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+
+                                <h4 class="text-center card-title text-success">Edit Employee </h4>
+
+                                <div class="mb-2">
+                                    <label for="e_first_name" class="form-label">First Name</label>
+                                    <input type="text" name="first_name" id="e_first_name" value="" class="form-control">
+                                </div>
+
+                                <div class="mb-2">
+                                    <label for="e_last_name" class="form-label">Last Name</label>
+                                    <input type="text" name="last_name" id="e_last_name" value="" class="form-control">
+                                </div>
+
+                                <div class="mb-2">
+                                    <label for="e_post" class="form-label">Post</label>
+                                    <input type="text" name="post" id="e_post" value="" class="form-control">
+                                </div>
+
+                                <hr>
+
+                                <div class="d-grid gap-2 col">
+                                    <button type="submit" class="btn btn-outline-success btn-lg" name="btn_upd">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Delete Employee -->
+
+    <!-- Start Modal Delete Employee -->
+    <div class="modal hide fade" id="deleteEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="card shadow modal-body bg-dark rounded">
+                <form action="{{route('delete_employee')}}" method="POST">
+                    @method('delete')
+                    @csrf
+                    <div class="p-2 mb-1 bg-dark rounded">
+                        <div class="card-body p-2">
+                <div class="modal-body">
+                    <p class="text-center">Are you sure you want to delete this?</p>
+{{--                    <input type="text" name="post" id="d_post" value="" class="form-control">--}}
+                    <input type="hidden" id="empl_id" name="employee_id" value="">
+                   <div id="mat-list">
+                       <ol>
+                           <li>
+
+                           </li>
+                       </ol>
+                   </div>
+                </div>
+                <div class="d-grid gap-2 col p-3">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Cancel</button>
+                    <button type="submit" class="btn btn-outline-danger" name="btn_del">Yes, Delete</button>
+                </div>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Delete Employee -->
+
+    <!-- Start Main Content -->
     <form method="get" action="">
         <div class="nav nav-pills flex-column mb-auto list-unstyled ps-0">
             <a href="" class="text-center nav-link text-white rounded pt-0" data-bs-toggle="modal" data-bs-target="#createEmployeeModal" role="button" aria-expanded="true">
@@ -25,9 +104,9 @@
                 <span class="ms-1 fs-3">Employees</span>
             </a>
         </div>
-
         <hr>
 
+        <!-- Start Table -->
         <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" style="width:100%">
             <thead>
             <tr>
@@ -40,7 +119,6 @@
                 <th scope="col">Options</th>
             </tr>
             </thead>
-
             <tbody>
             @foreach($employees as $employee)
                 <tr>
@@ -50,21 +128,21 @@
                     <td class="post">{{$employee->post}}</td>
                     <td class="created">{{$employee->created_at}}</td>
                     <td class="updated">{{$employee->updated_at}}</td>
-
                     <td>
                         <a href="" class="btn btn-warning btn-sm employeesEdits" id="editEmployee" data-id="{{$employee->id}}" data-bs-toggle="modal" data-bs-target="#updateEmployeeModal" role="button" aria-expanded="true">
                             <i class="bi bi-pencil-fill"></i>
                         </a>
-                        <a class="btn btn-danger btn-sm" href="employees/deleteEmployee/{{$employee->id}}" onclick="return confirm('Are you sure to want to delete it?')" data-original-title="Delete">
+                        <a class="btn btn-danger btn-sm employeesDeletes" href="" id="deleteEmployee" data-emplid="{{$employee->id}}" data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal" role="button" aria-expanded="true">
+{{--                           onclick="return confirm('Are you sure to want to delete it?')" data-original-title="Delete">--}}
                             <i class="bi bi-trash-fill"></i>
                         </a>
                     </td>
-
                 </tr>
             @endforeach
             </tbody>
         </table>
     </form>
+    <!-- End Main Content -->
 
     <!-- Start Modal Create -->
     <div class="modal hide fade" id="createEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
@@ -118,51 +196,6 @@
     <!-- End Modal Create -->
 
 
-    <!-- Start Modal Edit -->
-    <div class="modal hide fade" id="updateEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-dark">
-                <div class="card shadow modal-body bg-dark rounded">
-                    <form action="{{route('update_employee')}}" method="POST">
-                        @csrf
-                        <input type="hidden" id="employee_id" name="employee_id" value="">
-                        <div class="p-2 mb-1 bg-dark rounded">
-                            <div class="card-body p-2">
-
-                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-
-                                <h4 class="text-center card-title text-success">Edit Employee </h4>
-
-                                <div class="mb-2">
-                                    <label for="e_first_name" class="form-label">First Name</label>
-                                    <input type="text" name="first_name" id="e_first_name" value="" class="form-control">
-                                </div>
-
-                                <div class="mb-2">
-                                    <label for="e_last_name" class="form-label">Last Name</label>
-                                    <input type="text" name="last_name" id="e_last_name" value="" class="form-control">
-                                </div>
-
-                                <div class="mb-2">
-                                    <label for="e_post" class="form-label">Post</label>
-                                    <input type="text" name="post" id="e_post" value="" class="form-control">
-                                </div>
-
-                                <hr>
-
-                                <div class="d-grid gap-2 col">
-                                    <button type="submit" class="btn btn-outline-success btn-lg" name="btn_upd">Update</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- End Modal Edit -->
-
         <script>
             $(document).on('click', '.employeesEdits', function(){
                 var _this = $(this).parents('tr');
@@ -171,7 +204,23 @@
                 $('#e_last_name').val(_this.find('.last_name').text());
                 $('#e_post').val(_this.find('.post').text());
             });
+
         </script>
+
+    <script>
+       $('#deleteEmployeeModal').on('show.bs.modal', function(event){
+           var button = $(event.relatedTarget);
+
+           var empl_id = button.data('emplid');
+           var modal = $(this);
+
+           modal.find('.modal-body #empl_id').val(empl_id);
+
+           // document.getElementById('mat-list').innerHTML = empl_id;
+           // $('#mat-list').html(empl_id);
+       });
+    </script>
+
 
         <script>
             $(document).ready(function () {
@@ -186,7 +235,7 @@
                 $('#datatable').DataTable( {
                     "scrollX": true,
                     lengthMenu: [5, 10, 20, 50],
-                    // "order": [[ 0, "desc" ]],
+                    "order": [[ 5, "desc" ]],
                 } );
             } );
         </script>

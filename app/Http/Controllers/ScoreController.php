@@ -38,6 +38,27 @@ class ScoreController extends Controller
         return Redirect::back()->withErrors(["Score $score->title created"]);
     }
 
+    public function update_web(Request $request): RedirectResponse
+    {
+        $updateScore = [
+            'id' => $request->input('score_id'),
+            'title' => $request->input('title'),
+            'description' =>  $request->input('description'),
+        ];
+
+        Score::where('id', $request->input('score_id'))->update($updateScore);
+
+        return back()->withErrors("Score {$request->input('score_id')} updated");
+    }
+
+    public function delete_web(Request $request): RedirectResponse
+    {
+        $score = Score::findOrFail($request->input('score_id'));
+        $score->delete();
+
+        return back()->withErrors("Score {$request->input('score_id')} deleted");
+    }
+
     /**
      * Get all Scores
      * @return Score[]|Collection

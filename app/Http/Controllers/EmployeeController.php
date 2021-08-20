@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\Material;
+use App\Models\Score;
 use App\Services\ValidationService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
 
@@ -19,6 +20,8 @@ class EmployeeController extends Controller
     {
         return view('employee', [
             'employees' => $this->getAll(),
+            'materials' => Material::all(),
+            'scores' => Score::all(),
         ]);
     }
 
@@ -50,55 +53,28 @@ class EmployeeController extends Controller
         return Redirect::back()->withErrors(["Employee $employee->description created"]);
     }
 
-    public function show_web($id)
-    {
-        $data = Employee::find($id);
-
-        return view('employee', [
-            'data'=>$data,
-        ]);
-    }
-
     public function update_web(Request $request): RedirectResponse
     {
-//        $data = Employee::find($request->input('id'));
-//        $data->first_name = $request->input('first_name');
-//        $data->last_name = $request->input('last_name');
-//        $data->post = $request->input('post');
-//
-//        $full_name = $data->first_name . ' ' .  $data->last_name;
-//        $description = $full_name . ' - ' . $data->post;
-//
-//        $data->description = $description;
-//
-//        return dd($data);
-//
-//        $data->save();
-//
-//        return Redirect::back();
-
         $updateEmployee = [
-            'id' => $request->employee_id,
-            'first_name' => $request->first_name,
-            'last_name' =>  $request->last_name,
-            'post' => $request->post,
-            'description' => "$request->first_name $request->last_name - $request->post",
+            'id' => $request->input('employee_id'),
+            'first_name' => $request->input('first_name'),
+            'last_name' =>  $request->input('last_name'),
+            'post' => $request->input('post'),
+            'description' => "{$request->input('first_name')} {$request->input('last_name')} - {$request->input('post')}",
         ];
 
-        Employee::where('id', $request->employee_id)->update($updateEmployee);
+        Employee::where('id', $request->input('employee_id'))->update($updateEmployee);
 
-//        DB::table('employees')->where('id', $request->employee_id)->update($updateEmployee);
-        return Redirect::back()->withErrors("Employee $request->employee_id updated");
+        return back()->withErrors("Employee {$request->input('employee_id')} updated");
     }
 
-    public function delete_web($id): RedirectResponse
+    public function delete_web(Request $request): RedirectResponse
     {
-        $data = Employee::find($id);
-        $data->delete();
+        $employee = Employee::findOrFail($request->input('employee_id'));
+        $employee->delete();
 
-        return Redirect::back()->withErrors(["Employee $id deleted"]);
+        return back()->withErrors("Employee {$request->input('employee_id')} deleted");
     }
-
 
     /**
      * Get all Employees
