@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Employee;
+use App\Models\Material;
+use App\Models\Score;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -10,7 +13,15 @@ class MainController extends Controller
 {
     public function home()
     {
-        return view('home');
+        return view('home', [
+            'materials' => Material::all(),
+            'materials_trashed' => Material::onlyTrashed()->get()->count(),
+            'materials_count' => Material::all()->count(),
+            'scores' => Score::all(),
+            'scores_count' => Score::all()->count(),
+            'employees' => Employee::all(),
+            'employees_count' => Employee::all()->count(),
+        ]);
     }
 
     public function about()
