@@ -35,7 +35,7 @@ Route::group(['prefix' => 'materials'], function(){
 
 Route::group(['prefix' => 'employees'], function(){
     Route::get('/', [EmployeeController::class, 'get_web'])->name('employee');
-    Route::post('/check', [EmployeeController::class, 'create_web']);
+    Route::post('/check', [EmployeeController::class, 'create_web'])->name('create_employee');
     Route::delete('deleteEmployee', [EmployeeController::class, 'delete_web'])->name('delete_employee');
     Route::post('updateEmployee', [EmployeeController::class, 'update_web'])->name('update_employee');
 });

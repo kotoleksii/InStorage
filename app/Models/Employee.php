@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static updateOrCreate(array $array, array $array1)
  * @method static where(string $string, mixed $employee_id)
  * @method static findOrFail(mixed $input)
+ * @method static whereBetween(string $string, array $array)
  * @property mixed first_name
  * @property mixed last_name
  * @property mixed post

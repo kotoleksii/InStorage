@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-    Employees
+    | Employees
 @endsection
 
 @section('main_content')
@@ -110,6 +110,12 @@
         </div>
         <hr>
 
+        <!-- Start Red Spinner -->
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border text-danger" style="width: 3rem; height: 3rem;" role="status"></div>
+        </div>
+        <!-- End Red Spinner -->
+
         <!-- Start Table -->
         <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" style="width:100%">
             <thead>
@@ -153,7 +159,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content bg-dark">
                 <div class="card shadow modal-body bg-dark rounded">
-                    <form action="{{action([\App\Http\Controllers\EmployeeController::class, 'create_web'])}}" method="POST" class="needs-validation" novalidate="" autocomplete="off">
+                    <form action="{{route('create_employee')}}" method="POST" class="needs-validation" novalidate="" autocomplete="off">
                         @csrf
                         <div class="p-2 mb-1 bg-dark rounded">
                             <div class="modal-body p-2">
@@ -199,24 +205,23 @@
     </div>
     <!-- End Modal Create -->
 
+    <script>
+        $(document).on('click', '.employeesEdits', function(){
+            let _this = $(this).parents('tr');
+            $('#employee_id').val(_this.find('.id_employee').text());
+            $('#e_first_name').val(_this.find('.first_name').text());
+            $('#e_last_name').val(_this.find('.last_name').text());
+            $('#e_post').val(_this.find('.post').text());
+        });
 
-        <script>
-            $(document).on('click', '.employeesEdits', function(){
-                var _this = $(this).parents('tr');
-                $('#employee_id').val(_this.find('.id_employee').text());
-                $('#e_first_name').val(_this.find('.first_name').text());
-                $('#e_last_name').val(_this.find('.last_name').text());
-                $('#e_post').val(_this.find('.post').text());
-            });
-
-        </script>
+    </script>
 
     <script>
        $('#deleteEmployeeModal').on('show.bs.modal', function(event){
-           var button = $(event.relatedTarget);
+           let button = $(event.relatedTarget);
 
-           var empl_id = button.data('emplid');
-           var modal = $(this);
+           let empl_id = button.data('emplid');
+           let modal = $(this);
 
            modal.find('.modal-body #empl_id').val(empl_id);
 
@@ -226,33 +231,32 @@
     </script>
 
 
-        <script>
-            $(document).ready(function () {
-                $('select').selectize({
-                    // sortField: 'text'
-                }); }
-            );
-        </script>
+    <script>
+        $(document).ready(function () {
+            $('select').selectize({
+                // sortField: 'text'
+            }); }
+        );
+    </script>
 
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#datatable').DataTable( {
-                    "scrollX": true,
-                    lengthMenu: [5, 10, 20, 50],
-                    "order": [[ 5, "desc" ]],
-                } );
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#datatable').DataTable( {
+                "scrollX": true,
+                lengthMenu: [5, 10, 20, 50],
+                "order": [[ 5, "desc" ]],
             } );
-        </script>
+        } );
+    </script>
 
-        <script>
-            $(document).ready(function() {
-                let table = $('#datatable').DataTable();
+    <script>
+        $(document).ready(function() {
+            let table = $('#datatable').DataTable();
 
-                $('#datatable tbody').on('dblclick', 'tr', function () {
-                    let data = table.row(this).data();
-                    alert( 'You clicked on '+data[0]+'\'s row' );
-                } );
+            $('#datatable tbody').on('dblclick', 'tr', function () {
+                let data = table.row(this).data();
+                alert( 'You clicked on '+data[0]+'\'s row' );
             } );
-        </script>
-
+        } );
+    </script>
 @endsection

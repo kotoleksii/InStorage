@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-    Scores
+    | Scores
 @endsection
 
 @section('main_content')
@@ -88,11 +88,17 @@
     <form method="get" action="">
         <div class="nav nav-pills flex-column mb-auto list-unstyled ps-0">
             <a href="" class="text-center nav-link text-white rounded pt-0" data-bs-toggle="modal" data-bs-target="#createScoreModal" role="button" aria-expanded="true">
-                <i class="fs-3 bi-file-earmark-plus" style="color:#35df91;"></i>
+                <i class="fs-3 bi-clipboard-plus" style="color:#35df91;"></i>
                 <span class="ms-1 fs-3">Scores</span>
             </a>
         </div>
         <hr>
+
+        <!-- Start Green Spinner -->
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border text-success" style="width: 3rem; height: 3rem;" role="status"></div>
+        </div>
+        <!-- End Green Spinner -->
 
         <!-- Start Table -->
         <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" style="width:100%">
@@ -167,7 +173,7 @@
 
         <script>
             $(document).on('click', '.scoresEdits', function(){
-                var _this = $(this).parents('tr');
+                let _this = $(this).parents('tr');
                 $('#score_id').val(_this.find('.id_score').text());
                 $('#e_title').val(_this.find('.title').text());
                 $('#e_description').val(_this.find('.description').text());
@@ -177,10 +183,10 @@
 
         <script>
             $('#deleteScoreModal').on('show.bs.modal', function(event){
-                var button = $(event.relatedTarget);
+                let button = $(event.relatedTarget);
 
-                var scr_id = button.data('scrid');
-                var modal = $(this);
+                let scr_id = button.data('scrid');
+                let modal = $(this);
 
                 modal.find('.modal-body #scr_id').val(scr_id);
             });
