@@ -23,6 +23,8 @@
                 </a>
             </div>
 
+            <hr>
+
             <div class="collapse show text-white" id="HideOptions">
             <div class="row">
                     <div class="col-md-7 mb-2">

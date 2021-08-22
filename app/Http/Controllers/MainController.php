@@ -9,30 +9,13 @@ use App\Models\Score;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class MainController extends Controller
 {
     public function home()
     {
-        $fromDate = Carbon::now()->subMonth()->startOfMonth()->toDateString();
-        $tillDate = Carbon::now()->subMonth()->endOfMonth()->toDateString();
-
-        $lastMonthData = Employee::whereBetween('created_at',[$fromDate,$tillDate])->get()->count();
-
-        $scoreIdMaxDuplicatedCountQuery = DB::table('materials')
-            ->select('score_id', DB::raw('COUNT(score_id) as items'))
-            ->groupBy('score_id')
-            ->orderByRaw('items DESC')
-            ->limit(1)->whereNull('deleted_at')->get();
-
-        $scoreIdMaxDuplicatedCount = Score::all()->where('id', $scoreIdMaxDuplicatedCountQuery[0]->score_id);
-
-        $score_title_hot = '';
-        foreach($scoreIdMaxDuplicatedCount as $sc){
-            $score_title_hot = $sc->title;
-        }
-
         return view('home', [
             'materials' => Material::all(),
             'materials_trashed' => Material::onlyTrashed()->get()->count(),
@@ -41,10 +24,39 @@ class MainController extends Controller
             'scores_count' => Score::all()->count(),
             'employees' => Employee::all(),
             'employees_count' => Employee::all()->count(),
-            'employee_last_month_count' => $lastMonthData,
-            'hot_score_title' => $score_title_hot,
-            'hot_score_items' => $scoreIdMaxDuplicatedCountQuery[0]->items,
+            'employee_last_month_count' => $this->lastMonthEmployeeData(),
+            'hot_score_title' => $this->getPopularScoreTitle(),
+            'hot_score_items' => $this->getPopularValueInColumn('materials', 'score_id')[0]->items,
         ]);
+    }
+
+    public function lastMonthEmployeeData()
+    {
+        $fromDate = Carbon::now()->subMonth()->startOfMonth()->toDateString();
+        $tillDate = Carbon::now()->subMonth()->endOfMonth()->toDateString();
+
+        return Employee::whereBetween('created_at', [$fromDate, $tillDate])->get()->count();
+    }
+
+    public function getPopularValueInColumn(string $table, string $column): Collection
+    {
+        return DB::table($table)
+            ->select($column, DB::raw("COUNT($column) as items"))
+            ->groupBy($column)
+            ->orderByRaw('items DESC')
+            ->limit(1)->whereNull('deleted_at')->get();
+    }
+
+    public function getPopularScoreTitle()
+    {
+        $scoreIdMaxDuplicatedCount = Score::all()->where('id', $this->getPopularValueInColumn('materials', 'score_id')[0]->score_id);
+
+        $score_title_hot = '';
+        foreach ($scoreIdMaxDuplicatedCount as $sc) {
+            $score_title_hot = $sc->title;
+        }
+
+        return $score_title_hot;
     }
 
     public function about()
