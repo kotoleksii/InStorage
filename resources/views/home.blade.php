@@ -6,17 +6,15 @@
 
 @section('main_content')
 
-    <div class="py-5 text-center">
+    <div class="pt-4 mb-4 pb-4 text-center">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad cupiditate dolorem eos iusto qui quibusdam quos temporibus veniam? Alias amet blanditiis corporis enim et libero nulla porro provident quod veniam?</p>
     </div>
 
-    <!-- Start Blue Spinner -->
+    <!-- Start Spinner -->
     <div class="d-flex justify-content-center">
-        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only"></span>
-        </div>
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status"></div>
     </div>
-    <!-- End Blue Spinner -->
+    <!-- End Spinner -->
 
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
         <div class="col">

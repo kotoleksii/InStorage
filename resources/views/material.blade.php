@@ -46,16 +46,16 @@
                     </div>
 
                     <div class="col-md-2 mb-2">
-                        <button type="submit" class="btn btn-primary col-12" style="height: 35px; background-color: #508fcd">Find</button>
+                        <button type="submit" class="btn col-12 text-white" style="height: 35px; background-color: #276899">Find</button>
                     </div>
                 </div>
             </div>
 
-        <!-- Start Yellow Spinner -->
+            <!-- Start Spinner -->
             <div class="d-flex justify-content-center">
-                <div class="spinner-border text-warning" style="width: 3rem; height: 3rem;" role="status"></div>
+                <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status"></div>
             </div>
-            <!-- End Yellow Spinner -->
+            <!-- End Spinner -->
 
             @if (isset($_GET["employee_select"]) && isset($_GET["score_select"]))
                 @foreach($employees->where('id', '=', $_GET["employee_select"]) as $employee_title)
@@ -200,7 +200,8 @@
 
                     <hr>
 
-                    <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" style="width:100%">
+
+                    <table id="datatable" class="table table-striped table-dark table-bordered" style="width:100%">
                         <thead>
                         <tr>
                             <th scope="row">ID</th>
@@ -230,7 +231,7 @@
                                 <td>{{$material->price_hr}}</td>
                                 <td>{{$material->total_sum_hr}}</td>
                                 @foreach($employees->where('id', '=', $material->employee_id) as $employee)
-                                    <td>{{$employee->description}}</td>
+                                    <td>{{$employee->last_name}} {{$employee->first_name}}</td>
                                 @endforeach
 
                                 <td>
@@ -248,7 +249,8 @@
                 @endforeach
             @endif
 
-            @if(empty($_GET["employee_select"]) && empty($_GET["score_select"]))
+
+                @if(empty($_GET["employee_select"]) && empty($_GET["score_select"]))
                 <div class="row">
                     <div class="col-md-12">
                         <a href="#HideOptions" class="text-center nav-link text-white rounded px-0 py-0 mx-0 my-0" data-bs-toggle="collapse" data-bs-target="#HideOptions" role="button" aria-expanded="true">
@@ -286,11 +288,11 @@
                                     <div class="row">
                                         <div class="col-sm-12 mb-2">
                                             <div class="row">
-                                                <div class="col-4 col-sm-7">
+                                                <div class="col-7 col-sm-7">
                                                     <label for="inventory_number" class="form-label">Inventory Number</label>
                                                     <input type="text" name="inventory_number" id="inventory_number" class="form-control">
                                                 </div>
-                                                <div class="col-4 col-sm-5">
+                                                <div class="col-5 col-sm-5">
                                                     <label for="date_start" class="form-label">Date Start</label>
 
                                                 <!-- Date Picker Input -->
@@ -335,23 +337,23 @@
                                     <div class="row">
                                         <div class="col-sm-12 mb-4">
                                             <div class="row">
-                                                <div class="col-4 col-sm-7">
+                                                <div class="col-6 col-sm-7">
                                                     <label for="employee_id" class="form-label">Employee</label>
 
                                                     <select name="employee_id" id="employee_id" aria-label="Employee list">
                                                         <option value="">Select Employee</option>
                                                         @foreach($employees as $employee)
-                                                            <option value="{{$employee->id}}">{{$employee->description}}</option>
+                                                            <option value="{{$employee->id}}">{{$employee->id}} {{$employee->description}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <div class="col-4 col-sm-5">
+                                                <div class="col-6 col-sm-5">
                                                     <label for="score_id" class="form-label">Score</label>
 
                                                     <select name="score_id" id="score_id" aria-label="Employee list">
                                                         <option value="">Select Score</option>
                                                         @foreach($scores as $score)
-                                                            <option value="{{$score->id}}">{{$score->title}}</option>
+                                                            <option value="{{$score->id}}">{{$score->id}} {{$score->title}}</option>
                                                         @endforeach
                                                     </select>
 
@@ -361,7 +363,7 @@
                                     </div>
 
                                     <div class="d-grid gap-2 col-12">
-                                        <button type="submit" class="btn btn-success btn-lg shadow" style="background-color: #84a6c7" name="btn_add">Create</button>
+                                        <button type="submit" class="btn btn-lg shadow text-white" style="background-color: #276899;" name="btn_add">Create</button>
                                     </div>
 
                                 </div>

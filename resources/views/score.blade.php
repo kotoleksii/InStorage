@@ -94,11 +94,11 @@
         </div>
         <hr>
 
-        <!-- Start Green Spinner -->
+        <!-- Start Spinner -->
         <div class="d-flex justify-content-center">
-            <div class="spinner-border text-success" style="width: 3rem; height: 3rem;" role="status"></div>
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status"></div>
         </div>
-        <!-- End Green Spinner -->
+        <!-- End Spinner -->
 
         <!-- Start Table -->
         <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" style="width:100%">
