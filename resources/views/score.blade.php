@@ -87,8 +87,8 @@
     <!-- Start Main Content -->
     <form method="get" action="">
         <div class="nav nav-pills flex-column mb-auto list-unstyled ps-0">
-            <a href="" class="text-center nav-link text-white rounded pt-0" data-bs-toggle="modal" data-bs-target="#createScoreModal" role="button" aria-expanded="true">
-                <i class="fs-3 bi-clipboard-plus" style="color:#35df91;"></i>
+            <a href="" class="text-center nav-link text-white rounded" data-bs-toggle="modal" data-bs-target="#createScoreModal" role="button" aria-expanded="true">
+                <i class="fs-4 bi-plus-circle" style="color:#3fa7cf;"></i>
                 <span class="ms-1 fs-3">Scores</span>
             </a>
         </div>

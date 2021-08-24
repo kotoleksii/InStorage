@@ -18,7 +18,7 @@
         <form method="get" action="">
             <div class="nav nav-pills flex-column mb-auto list-unstyled ps-0">
                 <a href="" class="text-center nav-link text-white rounded pt-0" data-bs-toggle="modal" data-bs-target="#createModal" role="button" aria-expanded="true">
-                    <i class="fs-3 bi-bag-plus" style="color:#35df91;"></i>
+                    <i class="fs-4 bi-plus-circle" style="color:#508fcd;"></i>
                     <span class="ms-1 fs-3">Materials</span>
                 </a>
             </div>
@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="col-md-2 mb-2">
-                        <button type="submit" class="btn btn-primary col-12" style="height: 35px;">Find</button>
+                        <button type="submit" class="btn btn-primary col-12" style="height: 35px; background-color: #508fcd">Find</button>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
                             <div class="col-md-12">
                                 <a href="#HideOptions" class="text-center nav-link text-white rounded px-0 py-0 mx-0 my-0" data-bs-toggle="collapse" data-bs-target="#HideOptions" role="button" aria-expanded="true">
                                     <div class="col-xs-1 text-center">
-                                        <div class="alert alert-primary" data-bs-toggle="tooltip" title="Press to Hide Options">
+                                        <div class="alert alert-secondary" data-bs-toggle="tooltip" title="Press to Hide Options">
                                             <h3>{{$employee_title->description}}</h3>
                                             <h4>{{$score_title->title}}</h4>
                                         </div>
@@ -127,7 +127,7 @@
                         <div class="col-md-12">
                             <a href="#HideOptions" class="text-center nav-link text-white rounded px-0 py-0 mx-0 my-0" data-bs-toggle="collapse" data-bs-target="#HideOptions" role="button" aria-expanded="true">
                                 <div class="col-xs-1 text-center">
-                                    <div class="alert alert-danger" data-bs-toggle="tooltip" title="Press to Hide Options">
+                                    <div class="alert alert-secondary" data-bs-toggle="tooltip" title="Press to Hide Options">
                                         <h3>{{$employee_title->description}}</h3>
                                     </div>
                                 </div>
@@ -190,7 +190,7 @@
                         <div class="col-md-12">
                             <a href="#HideOptions" class="text-center nav-link text-white rounded px-0 py-0 mx-0 my-0" data-bs-toggle="collapse" data-bs-target="#HideOptions" role="button" aria-expanded="true">
                                 <div class="col-xs-1 text-center">
-                                    <div class="alert alert-success" data-bs-toggle="tooltip" title="Press to Hide Options">
+                                    <div class="alert alert-secondary" data-bs-toggle="tooltip" title="Press to Hide Options">
                                         <h3>{{$score_title->title}}</h3>
                                     </div>
                                 </div>
@@ -266,18 +266,18 @@
         <!-- Start Modal Create -->
         <div class="modal hide fade" id="createModal" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content bg-dark">
-                    <div class="card shadow modal-body bg-dark rounded">
+                <div class="modal-content" style="background-color: #151b27">
+                    <div class="card shadow modal-body rounded" style="background-color: #151b27">
                         <form action="{{route('create_material')}}" method="POST" class="needs-validation" novalidate="" autocomplete="off">
                             @csrf
-                            <div class="p-2 mb-1 bg-dark rounded">
+                            <div class="p-2 mb-1 rounded" style="background-color: #151b27">
                                 <div class="card-body p-2">
 
                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
 
-                                    <h4 class="text-center card-title text-success">New Material</h4>
+                                    <p class="text-center fs-3 card-title" style="color: #a2bdd8">New Material</p>
 
                                     <div class="mb-2">
                                         <label for="title" class="form-label">Title</label>
@@ -361,7 +361,7 @@
                                     </div>
 
                                     <div class="d-grid gap-2 col-12">
-                                        <button type="submit" class="btn btn-outline-success btn-lg" name="btn_add">Create</button>
+                                        <button type="submit" class="btn btn-success btn-lg shadow" style="background-color: #84a6c7" name="btn_add">Create</button>
                                     </div>
 
                                 </div>

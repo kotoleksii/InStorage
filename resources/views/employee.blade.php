@@ -104,7 +104,7 @@
     <form method="get" action="">
         <div class="nav nav-pills flex-column mb-auto list-unstyled ps-0">
             <a href="" class="text-center nav-link text-white rounded pt-0" data-bs-toggle="modal" data-bs-target="#createEmployeeModal" role="button" aria-expanded="true">
-                <i class="fs-3 bi-person-plus" style="color:#35df91;"></i>
+                <i class="fs-4 bi-plus-circle" style="color:#508fcd;"></i>
                 <span class="ms-1 fs-3">Employees</span>
             </a>
         </div>
@@ -188,7 +188,7 @@
                                             <option value="{{$employee->post}}">{{$employee->post}}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div>6
 
                                 <hr>
 
