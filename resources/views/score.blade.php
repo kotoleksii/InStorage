@@ -101,33 +101,35 @@
         <!-- End Spinner -->
 
         <!-- Start Table -->
-        <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" style="width:100%">
-            <thead>
-            <tr>
-                <th scope="row">ID</th>
-                <th scope="col">Title</th>
-                <th scope="col">Description</th>
-                <th scope="col">Options</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($scores as $score)
+        <div class="table-responsive">
+            <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" style="width:100%">
+                <thead>
                 <tr>
-                    <th scope="row" class="id_score">{{$score->id}}</th>
-                    <td class="title">{{$score->title}}</td>
-                    <td class="description">{{$score->description}}</td>
-                    <td>
-                        <a href="" class="btn btn-warning btn-sm scoresEdits" data-bs-toggle="modal" data-bs-target="#updateScoreModal">
-                            <i class="bi bi-pencil-fill"></i>
-                        </a>
-                        <a href="" class="btn btn-danger btn-sm scoresDeletes" id="deleteScore" data-scrid="{{$score->id}}" data-bs-toggle="modal" data-bs-target="#deleteScoreModal">
-                            <i class="bi bi-trash-fill"></i>
-                        </a>
-                    </td>
+                    <th scope="row">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Options</th>
                 </tr>
-            @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                @foreach($scores as $score)
+                    <tr>
+                        <th scope="row" class="id_score">{{$score->id}}</th>
+                        <td class="title">{{$score->title}}</td>
+                        <td class="description">{{$score->description}}</td>
+                        <td>
+                            <a href="" class="btn btn-warning btn-sm scoresEdits" data-bs-toggle="modal" data-bs-target="#updateScoreModal">
+                                <i class="bi bi-pencil-fill"></i>
+                            </a>
+                            <a href="" class="btn btn-danger btn-sm scoresDeletes" id="deleteScore" data-scrid="{{$score->id}}" data-bs-toggle="modal" data-bs-target="#deleteScoreModal">
+                                <i class="bi bi-trash-fill"></i>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
     </form>
     <!-- End Main Content -->
 
@@ -182,14 +184,24 @@
         </script>
 
         <script>
-            $('#deleteScoreModal').on('show.bs.modal', function(event){
+            $('#deleteScoreModal').on('show.bs.modal', async function (event) {
                 let button = $(event.relatedTarget);
 
                 let scr_id = button.data('scrid');
                 let modal = $(this);
 
-                modal.find('.modal-body #scr_id').val(scr_id);
-            });
+                // modal.find('.modal-body #scr_id').val(scr_id);
+
+                let url = `http://127.0.0.1:8000/api/employees/${scr_id}`;
+
+                fetch(url)
+                    .then(response => {
+                        return new Promise((resolve)=> {
+                            return resolve(response.json());
+                        })
+                    })
+                    .then(data => console.log(data));
+                     });
         </script>
 
             <script>
@@ -203,7 +215,7 @@
             <script type="text/javascript">
                 $(document).ready(function() {
                     $('#datatable').DataTable( {
-                        "scrollX": true,
+                        // "scrollX": true,
                         lengthMenu: [5, 10, 20, 50],
                         "order": [[ 0, "desc" ]],
                     } );

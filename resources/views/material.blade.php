@@ -15,7 +15,32 @@
         </div>
     @endif
 
-        <form method="get" action="">
+
+{{--    <div id="qrcode"></div>--}}
+
+    <!-- Start Modal QR -->
+    <div class="modal hide fade" id="QRModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background-color: #151b27">
+                <div class="card shadow modal-body rounded" style="background-color: #151b27">
+                    <div class="d-grid gap-0 d-md-flex justify-content-md-end">
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="" id="qrform">
+                        <div class="p-2 mb-0 rounded" style="background-color: #151b27">
+                            <div class="card-body p-0">
+                                <div style="display: flex; justify-content: center; text-align: center; margin: 0;" id="qrcode"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal QR -->
+
+
+    <form method="get" action="">
             <div class="nav nav-pills flex-column mb-auto list-unstyled ps-0">
                 <a href="" class="text-center nav-link text-white rounded pt-0" data-bs-toggle="modal" data-bs-target="#createModal" role="button" aria-expanded="true">
                     <i class="fs-4 bi-plus-circle" style="color:#508fcd;"></i>
@@ -61,7 +86,7 @@
                 @foreach($employees->where('id', '=', $_GET["employee_select"]) as $employee_title)
                     @foreach($scores->where('id', '=', $_GET["score_select"]) as $score_title)
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col">
                                 <a href="#HideOptions" class="text-center nav-link text-white rounded px-0 py-0 mx-0 my-0" data-bs-toggle="collapse" data-bs-target="#HideOptions" role="button" aria-expanded="true">
                                     <div class="col-xs-1 text-center">
                                         <div class="alert alert-secondary" data-bs-toggle="tooltip" title="Press to Hide Options">
@@ -75,48 +100,49 @@
 
                         <hr>
 
-                        <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th scope="row">ID</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Inventory Number</th>
-                                    <th scope="col">Date start</th>
-                                    <th scope="col">Type</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Sum</th>
-                                    <th scope="col">Options</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                @foreach($materials
-                                            -> where('employee_id', '=', $_GET["employee_select"])
-                                            -> where('score_id', '=', $_GET["score_select"]) as $material)
+                        <div class="table-responsive">
+                            <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" style="width:100%">
+                                <thead>
                                     <tr>
-                                        <th scope="row">{{$material->id}}</th>
-                                        <td>{{$material->title}}</td>
-                                        <td>{{$material->inventory_number}}</td>
-                                        <td>{{$material->date_start}}</td>
-                                        <td>{{$material->type}}</td>
-                                        <td>{{$material->amount}}</td>
-                                        <td>{{$material->price_hr}}</td>
-                                        <td>{{$material->total_sum_hr}}</td>
-
-                                        <td>
-                                            <a class="btn btn-warning btn-sm"  href="materials/edit/{{$material->id}}">
-                                                <i class="bi bi-pencil-fill"></i>
-                                            </a>
-                                            <a class="btn btn-danger btn-sm" href="materials/delete/{{$material->id}}">
-                                                <i class="bi bi-trash-fill"></i>
-                                            </a>
-                                        </td>
+                                        <th scope="row">ID</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Inventory Number</th>
+                                        <th scope="col">Date start</th>
+                                        <th scope="col">Type</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Sum</th>
+                                        <th scope="col">Options</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
 
+                                <tbody>
+                                    @foreach($materials
+                                                -> where('employee_id', '=', $_GET["employee_select"])
+                                                -> where('score_id', '=', $_GET["score_select"]) as $material)
+                                        <tr>
+                                            <th scope="row">{{$material->id}}</th>
+                                            <td>{{$material->title}}</td>
+                                            <td>{{$material->inventory_number}}</td>
+                                            <td>{{$material->date_start}}</td>
+                                            <td>{{$material->type}}</td>
+                                            <td>{{$material->amount}}</td>
+                                            <td>{{$material->price_hr}}</td>
+                                            <td>{{$material->total_sum_hr}}</td>
+
+                                            <td>
+                                                <a class="btn btn-warning btn-sm"  href="materials/edit/{{$material->id}}">
+                                                    <i class="bi bi-pencil-fill"></i>
+                                                </a>
+                                                <a class="btn btn-danger btn-sm" href="materials/delete/{{$material->id}}">
+                                                    <i class="bi bi-trash-fill"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     @endforeach
                 @endforeach
             @endif
@@ -136,58 +162,60 @@
                     </div>
                     <hr>
 
-                    <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" style="width:100%">
-                        <thead>
-                        <tr>
-                            <th scope="row">ID</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Inventory Number</th>
-                            <th scope="col">Date start</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Sum</th>
-                            <th scope="col">Score</th>
-                            <th scope="col">Options</th>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        @foreach($materials
-                                    -> where('employee_id', '=', $_GET["employee_select"])
-                                    as $material)
+                    <div class="table-responsive">
+                        <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" style="width:100%">
+                            <thead>
                             <tr>
-                                <th scope="row">{{$material->id}}</th>
-                                <td>{{$material->title}}</td>
-                                <td>{{$material->inventory_number}}</td>
-                                <td>{{$material->date_start}}</td>
-                                <td>{{$material->type}}</td>
-                                <td>{{$material->amount}}</td>
-                                <td>{{$material->price_hr}}</td>
-                                <td>{{$material->total_sum_hr}}</td>
-                                @foreach($scores->where('id', '=', $material->score_id) as $score)
-                                    <td>{{$score->title}}</td>
-                                @endforeach
-
-                                <td>
-                                    <a class="btn btn-warning btn-sm"  href="materials/edit/{{$material->id}}">
-                                        <i class="bi bi-pencil-fill"></i>
-                                    </a>
-                                    <a class="btn btn-danger btn-sm" href="materials/delete/{{$material->id}}">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </a>
-                                </td>
+                                <th scope="row">ID</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Inventory Number</th>
+                                <th scope="col">Date start</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Sum</th>
+                                <th scope="col">Score</th>
+                                <th scope="col">Options</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+
+                            <tbody>
+                            @foreach($materials
+                                        -> where('employee_id', '=', $_GET["employee_select"])
+                                        as $material)
+                                <tr>
+                                    <th scope="row">{{$material->id}}</th>
+                                    <td>{{$material->title}}</td>
+                                    <td>{{$material->inventory_number}}</td>
+                                    <td>{{$material->date_start}}</td>
+                                    <td>{{$material->type}}</td>
+                                    <td>{{$material->amount}}</td>
+                                    <td>{{$material->price_hr}}</td>
+                                    <td>{{$material->total_sum_hr}}</td>
+                                    @foreach($scores->where('id', '=', $material->score_id) as $score)
+                                        <td>{{$score->title}}</td>
+                                    @endforeach
+
+                                    <td>
+                                        <a class="btn btn-warning btn-sm"  href="materials/edit/{{$material->id}}">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm" href="materials/delete/{{$material->id}}">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 @endforeach
             @endif
 
             @if(isset($_GET["score_select"]) && empty($_GET["employee_select"]))
                 @foreach($scores->where('id', '=', $_GET["score_select"]) as $score_title)
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col">
                             <a href="#HideOptions" class="text-center nav-link text-white rounded px-0 py-0 mx-0 my-0" data-bs-toggle="collapse" data-bs-target="#HideOptions" role="button" aria-expanded="true">
                                 <div class="col-xs-1 text-center">
                                     <div class="alert alert-secondary" data-bs-toggle="tooltip" title="Press to Hide Options">
@@ -200,59 +228,60 @@
 
                     <hr>
 
-
-                    <table id="datatable" class="table table-striped table-dark table-bordered" style="width:100%">
-                        <thead>
-                        <tr>
-                            <th scope="row">ID</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Inventory Number</th>
-                            <th scope="col">Date start</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Sum</th>
-                            <th scope="col">Employee</th>
-                            <th scope="col">Options</th>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        @foreach($materials
-                                   -> where('score_id', '=', $_GET["score_select"])
-                                    as $material)
+                    <div class="table-responsive">
+                        <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" style="width:100%">
+                            <thead>
                             <tr>
-                                <th scope="row">{{$material->id}}</th>
-                                <td>{{$material->title}}</td>
-                                <td>{{$material->inventory_number}}</td>
-                                <td>{{$material->date_start}}</td>
-                                <td>{{$material->type}}</td>
-                                <td>{{$material->amount}}</td>
-                                <td>{{$material->price_hr}}</td>
-                                <td>{{$material->total_sum_hr}}</td>
-                                @foreach($employees->where('id', '=', $material->employee_id) as $employee)
-                                    <td>{{$employee->last_name}} {{$employee->first_name}}</td>
-                                @endforeach
-
-                                <td>
-                                    <a class="btn btn-warning btn-sm"  href="materials/edit/{{$material->id}}">
-                                        <i class="bi bi-pencil-fill"></i>
-                                    </a>
-                                    <a class="btn btn-danger btn-sm" href="materials/delete/{{$material->id}}">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </a>
-                                </td>
+                                <th scope="row">ID</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Inventory Number</th>
+                                <th scope="col">Date start</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Sum</th>
+                                <th scope="col">Employee</th>
+                                <th scope="col">Options</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+
+                            <tbody>
+                            @foreach($materials
+                                       -> where('score_id', '=', $_GET["score_select"])
+                                        as $material)
+                                <tr>
+                                    <th scope="row">{{$material->id}}</th>
+                                    <td>{{$material->title}}</td>
+                                    <td>{{$material->inventory_number}}</td>
+                                    <td>{{$material->date_start}}</td>
+                                    <td>{{$material->type}}</td>
+                                    <td>{{$material->amount}}</td>
+                                    <td>{{$material->price_hr}}</td>
+                                    <td>{{$material->total_sum_hr}}</td>
+                                    @foreach($employees->where('id', '=', $material->employee_id) as $employee)
+                                        <td>{{$employee->last_name}} {{$employee->first_name}}</td>
+                                    @endforeach
+
+                                    <td>
+                                        <a class="btn btn-warning btn-sm"  href="materials/edit/{{$material->id}}">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm" href="materials/delete/{{$material->id}}">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 @endforeach
             @endif
 
 
                 @if(empty($_GET["employee_select"]) && empty($_GET["score_select"]))
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col">
                         <a href="#HideOptions" class="text-center nav-link text-white rounded px-0 py-0 mx-0 my-0" data-bs-toggle="collapse" data-bs-target="#HideOptions" role="button" aria-expanded="true">
                             <div class="col-xs-1 text-center">
                                 <div class="alert alert-secondary" data-bs-toggle="tooltip" title="Press to Hide Options">
@@ -394,7 +423,7 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 $('#datatable').DataTable( {
-                    "scrollX": true,
+                    // "scrollX": true,
                     lengthMenu: [5, 10, 20, 50],
                     // "order": [[ 0, "desc" ]],
                 } );
@@ -407,8 +436,26 @@
 
                 $('#datatable tbody').on('dblclick', 'tr', function () {
                     let data = table.row(this).data();
-                    alert( 'You clicked on '+data[0]+'\'s row' );
-                } );
-            } );
+
+                    const dataQr = `${data[0]}  ${data[1]}  ${data[2]} ${data[5]} ${data[6]}`;
+
+                    clearBox('qrcode');
+
+                    const qrcode = new QRCode(document.getElementById('qrcode'), {
+                        text: dataQr,
+                        // width: 128,
+                        // height: 128,
+                        colorDark: '#000',
+                        colorLight: '#fff',
+                        correctLevel: QRCode.CorrectLevel.H
+                    });
+
+                    $("#QRModal").modal('show');
+                });
+            });
+            function clearBox(elementID)
+            {
+                document.getElementById(elementID).innerHTML = "";
+            }
         </script>
     @endsection

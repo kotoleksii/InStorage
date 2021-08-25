@@ -28,7 +28,7 @@
 <div class="container-fluid overflow-hidden">
     <!-- Start Sidebar -->
     <div class="row vh-100 overflow-auto">
-        <div class="col-12 col-lg-3 col-xl-2 px-sm-2 px-0 d-flex sticky-top" style="background-color: #111520">
+        <div class="col col-lg-3 col-xl-2 px-sm-2 px-0 d-flex sticky-top" style="background-color: #111520">
             <div class="d-flex flex-lg-column flex-row flex-grow-1 align-items-center align-items-lg-start px-3 pt-2 text-white">
                 <a href="{{action([\App\Http\Controllers\MainController::class, 'home'])}}" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     {{--                        <span class="fs-5 pt-3">I<span class="pt-3 d-none d-sm-inline" style="color:#f39c12 !important">InStorage</span></span>--}}
@@ -96,9 +96,9 @@
         <!-- End Sidebar -->
 
         <!-- Start Content Block -->
-        <div class="col d-flex flex-column h-lg-100 vh-100">
-            <main class="row">
-                <div class="col pt-5 mt-4 mx-3">
+        <div class="col d-flex flex-column ">
+            <main class="row h-lg-100 vh-100">
+                <div class="col pt-5 mt-4">
                     @yield('main_content')
                 </div>
             </main>
@@ -110,6 +110,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js" ></script>
     <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
 
     <script>
         $(function() {

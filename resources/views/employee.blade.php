@@ -117,40 +117,42 @@
         <!-- End Spinner -->
 
         <!-- Start Table -->
-        <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" style="width:100%">
-            <thead>
-            <tr>
-                <th scope="row">ID</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Post</th>
-                <th scope="col">Created</th>
-                <th scope="col">Updated</th>
-                <th scope="col">Options</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($employees as $employee)
+        <div class="table-responsive">
+            <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" >
+                <thead>
                 <tr>
-                    <th scope="row" class="id_employee">{{$employee->id}}</th>
-                    <td class="first_name">{{$employee->first_name}}</td>
-                    <td class="last_name">{{$employee->last_name}}</td>
-                    <td class="post">{{$employee->post}}</td>
-                    <td class="created">{{$employee->created_at}}</td>
-                    <td class="updated">{{$employee->updated_at}}</td>
-                    <td>
-                        <a href="" class="btn btn-warning btn-sm employeesEdits" id="editEmployee" data-id="{{$employee->id}}" data-bs-toggle="modal" data-bs-target="#updateEmployeeModal" role="button" aria-expanded="true">
-                            <i class="bi bi-pencil-fill"></i>
-                        </a>
-                        <a class="btn btn-danger btn-sm employeesDeletes" href="" id="deleteEmployee" data-emplid="{{$employee->id}}" data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal" role="button" aria-expanded="true">
-{{--                           onclick="return confirm('Are you sure to want to delete it?')" data-original-title="Delete">--}}
-                            <i class="bi bi-trash-fill"></i>
-                        </a>
-                    </td>
+                    <th scope="row">ID</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Post</th>
+                    <th scope="col">Created</th>
+                    <th scope="col">Updated</th>
+                    <th scope="col">Options</th>
                 </tr>
-            @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                @foreach($employees as $employee)
+                    <tr>
+                        <th scope="row" class="id_employee">{{$employee->id}}</th>
+                        <td class="first_name">{{$employee->first_name}}</td>
+                        <td class="last_name">{{$employee->last_name}}</td>
+                        <td class="post">{{$employee->post}}</td>
+                        <td class="created">{{$employee->created_at}}</td>
+                        <td class="updated">{{$employee->updated_at}}</td>
+                        <td>
+                            <a href="" class="btn btn-warning btn-sm employeesEdits" id="editEmployee" data-id="{{$employee->id}}" data-bs-toggle="modal" data-bs-target="#updateEmployeeModal" role="button" aria-expanded="true">
+                                <i class="bi bi-pencil-fill"></i>
+                            </a>
+                            <a class="btn btn-danger btn-sm employeesDeletes" href="" id="deleteEmployee" data-emplid="{{$employee->id}}" data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal" role="button" aria-expanded="true">
+    {{--                           onclick="return confirm('Are you sure to want to delete it?')" data-original-title="Delete">--}}
+                                <i class="bi bi-trash-fill"></i>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
     </form>
     <!-- End Main Content -->
 
@@ -242,7 +244,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#datatable').DataTable( {
-                "scrollX": true,
+                // "scrollX": true,
                 lengthMenu: [5, 10, 20, 50],
                 "order": [[ 5, "desc" ]],
             } );
