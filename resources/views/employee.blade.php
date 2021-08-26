@@ -118,7 +118,7 @@
 
         <!-- Start Table -->
         <div class="table-responsive">
-            <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" >
+            <table id="datatable" class="table table-striped table-dark table-bordered table-hover display nowrap" >
                 <thead>
                 <tr>
                     <th scope="row">ID</th>
@@ -133,7 +133,7 @@
                 <tbody>
                 @foreach($employees as $employee)
                     <tr>
-                        <th scope="row" class="id_employee">{{$employee->id}}</th>
+                        <th scope="row">{{$employee->id}}</th>
                         <td class="first_name">{{$employee->first_name}}</td>
                         <td class="last_name">{{$employee->last_name}}</td>
                         <td class="post">{{$employee->post}}</td>
@@ -144,7 +144,7 @@
                                 <i class="bi bi-pencil-fill"></i>
                             </a>
                             <a class="btn btn-danger btn-sm employeesDeletes" href="" id="deleteEmployee" data-emplid="{{$employee->id}}" data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal" role="button" aria-expanded="true">
-    {{--                           onclick="return confirm('Are you sure to want to delete it?')" data-original-title="Delete">--}}
+{{--                               onclick="return confirm('Are you sure to want to delete it?')" data-original-title="Delete">--}}
                                 <i class="bi bi-trash-fill"></i>
                             </a>
                         </td>
@@ -153,6 +153,7 @@
                 </tbody>
             </table>
         </div>
+        <!-- End Table -->
     </form>
     <!-- End Main Content -->
 

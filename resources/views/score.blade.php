@@ -69,11 +69,11 @@
                                 <div class="modal-body">
                                     <p class="text-center">Are you sure you want to delete this?</p>
                                     <input type="hidden" id="scr_id" name="score_id" value="">
-
+                                    <ul class="scores_length ps-2" style="width: auto; height: 100px; overflow-x: hidden; overflow-y: scroll;"></ul>
                                 </div>
                                 <div class="d-grid gap-2 col p-3">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Cancel</button>
-                                    <button type="submit" class="btn btn-outline-danger" name="btn_del">Yes, Delete</button>
+                                    <button type="submit" class="btn btn-outline-danger" name="btn_del" id="btn_del" disabled>Yes, Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +102,7 @@
 
         <!-- Start Table -->
         <div class="table-responsive">
-            <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" style="width:100%">
+            <table id="datatable" class="table table-striped table-dark table-bordered table-hover display nowrap" style="width:100%">
                 <thead>
                 <tr>
                     <th scope="row">ID</th>
@@ -192,16 +192,59 @@
 
                 // modal.find('.modal-body #scr_id').val(scr_id);
 
-                let url = `http://127.0.0.1:8000/api/employees/${scr_id}`;
+                await renderScores(scr_id);
+            });
+            async function getScores(url) {
+                try {
+                    let res = await fetch(url);
+                    return await res.json()
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+            async function renderScores(scr_id) {
+                let url = `http://127.0.0.1:8000/api/materials/`;
+                let scores = await getScores(url);
+                let scoresFiltered = scores.filter(value => value.score_id === scr_id);
+                let scoresFilteredLength = scoresFiltered.length;
+                let html = '';
 
-                fetch(url)
-                    .then(response => {
-                        return new Promise((resolve)=> {
-                            return resolve(response.json());
-                        })
-                    })
-                    .then(data => console.log(data));
-                     });
+                btnDelBehavior(scoresFilteredLength);
+
+                scoresFiltered
+                    .forEach(score => {
+                    let htmlSegment =
+                        `<div class="score">
+                            <li style="list-style-type: none;">${score.id} - ${score.title}</li>
+                        </div>`;
+
+                    html += htmlSegment;
+                });
+
+                let htmlScoreListHeader = `<div class="score_list_header">На цьому рахунку матеріалів - ${scoresFiltered.length}</div>`
+                let infoMessage = '';
+                if(scoresFilteredLength > 0)
+                    infoMessage = `<div class="score_list_message text-danger">Видалення неможливе, перенесіть матеріали</div>`
+
+                let container = document.querySelector('.scores_length');
+                container.innerHTML = infoMessage + htmlScoreListHeader + html;
+            }
+
+            function btnDelBehavior(scoresFilteredLength)
+            {
+                const text = document.getElementById("btn_del");
+
+                switch (scoresFilteredLength) {
+                    case 0:
+                        text.removeAttribute("disabled", "");
+                        text.setAttribute("enabled", "");
+                        break;
+                    default:
+                        text.removeAttribute("enabled", "");
+                        text.setAttribute("disabled", "");
+                        break;
+                }
+            }
         </script>
 
             <script>

@@ -101,7 +101,7 @@
                         <hr>
 
                         <div class="table-responsive">
-                            <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" style="width:100%">
+                            <table id="datatable" class="table table-striped table-dark table-bordered table-hover display nowrap" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th scope="row">ID</th>
@@ -163,7 +163,7 @@
                     <hr>
 
                     <div class="table-responsive">
-                        <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" style="width:100%">
+                        <table id="datatable" class="table table-striped table-dark table-bordered table-hover display nowrap" style="width:100%">
                             <thead>
                             <tr>
                                 <th scope="row">ID</th>
@@ -229,7 +229,7 @@
                     <hr>
 
                     <div class="table-responsive">
-                        <table id="datatable" class="table table-striped table-dark table-bordered display nowrap" style="width:100%">
+                        <table id="datatable" class="table table-striped table-dark table-bordered table-hover display nowrap" style="width:100%">
                             <thead>
                             <tr>
                                 <th scope="row">ID</th>
@@ -430,19 +430,19 @@
             } );
         </script>
 
-        <script>
+        <script type="text/javascript">
             $(document).ready(function() {
                 let table = $('#datatable').DataTable();
 
                 $('#datatable tbody').on('dblclick', 'tr', function () {
                     let data = table.row(this).data();
 
-                    const dataQr = `${data[0]}  ${data[1]}  ${data[2]} ${data[5]} ${data[6]}`;
+                    let dataQr = `ID: ${data[0]}; Назва: ${data[1]}; Інвентарний: ${data[2]}; Кількість: ${data[5]}; Ціна: ${data[6]}`;
 
                     clearBox('qrcode');
 
-                    const qrcode = new QRCode(document.getElementById('qrcode'), {
-                        text: dataQr,
+                    new QRCode(document.getElementById('qrcode'), {
+                        text: 'проба',
                         // width: 128,
                         // height: 128,
                         colorDark: '#000',
