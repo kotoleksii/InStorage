@@ -203,7 +203,7 @@
                 }
             }
             async function renderScores(scr_id) {
-                let url = `{{ env('API_URL') }}/api/materials/`;
+                let url = `api/materials/`;
                 let scores = await getScores(url);
                 let scoresFiltered = scores.filter(value => value.score_id === scr_id);
                 let scoresFilteredLength = scoresFiltered.length;
