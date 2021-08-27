@@ -71,12 +71,12 @@
                 <hr>
 
                 <!-- Start Currency Prices Line -->
-                            <div class="marquee ms-1 " style='overflow:hidden; max-width: 122px;'>
-                                    <pre class="mb-0 d-none d-sm-inline">
-                                        {{\App\Services\CurrencyService::output_currencies()}}
-                                    </pre>
-                            </div>
-            <!-- End Currency Prices Line -->
+                <div class="marquee ms-1 d-none d-sm-inline" style='overflow:hidden; max-width: 122px;'>
+                        <pre class="mb-0 ">
+                            {{\App\Services\CurrencyService::output_currencies()}}
+                        </pre>
+                </div>
+                <!-- End Currency Prices Line -->
 
                 <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -98,8 +98,8 @@
         <!-- End Sidebar -->
 
         <!-- Start Content Block -->
-        <div class="col d-flex flex-column h-sm-100">
-            <main class="row vh-100">
+        <div class="col d-flex flex-column ">
+            <main class="row h-sm-100 vh-100">
                 <div class="col pt-5 mt-4">
                     @yield('main_content')
                 </div>
