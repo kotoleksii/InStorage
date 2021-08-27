@@ -15,7 +15,6 @@
         </div>
     @endif
 
-
 {{--    <div id="qrcode"></div>--}}
 
     <!-- Start Modal QR -->
@@ -163,7 +162,7 @@
                     <hr>
 
                     <div class="table-responsive">
-                        <table id="datatable" class="table table-striped table-dark table-bordered table-hover display nowrap" style="width:100%">
+                        <table id="datatable" class="table table-striped table-dark table-bordered table-hover display nowrap table-sm" style="width:100%">
                             <thead>
                             <tr>
                                 <th scope="row">ID</th>
@@ -423,26 +422,47 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 $('#datatable').DataTable( {
-                    // "scrollX": true,
+                    // "iDisplayLength": -1,
+                    "bPaginate": true,
+                    "iCookieDuration": 60,
+                    "bStateSave": false,
+                    "bAutoWidth": false,
+                    //true
+                    "bScrollAutoCss": true,
+                    "bProcessing": true,
+                    "bRetrieve": true,
+                    "bJQueryUI": true,
+                    //"sDom": 't',
+                    "sDom": '<"H"CTrf>t<"F"lip>',
                     lengthMenu: [5, 10, 20, 50],
+                    // "aLengthMenu": [[5, 10, 20, -1], [5, 10, 20, "All"]],
+                    //"sScrollY": "500px",
+                    // "sScrollX": "100%",
+                    // "sScrollXInner": "110%",
+                    "fnInitComplete": function() {
+                        this.css("visibility", "visible");
+                    },
+
+
+                    "scrollX": true,
                     // "order": [[ 0, "desc" ]],
                 } );
             } );
         </script>
 
-        <script type="text/javascript">
+       <script type="text/javascript">
             $(document).ready(function() {
                 let table = $('#datatable').DataTable();
 
                 $('#datatable tbody').on('dblclick', 'tr', function () {
                     let data = table.row(this).data();
 
-                    let dataQr = `ID: ${data[0]}; Назва: ${data[1]}; Інвентарний: ${data[2]}; Кількість: ${data[5]}; Ціна: ${data[6]}`;
-
+                    let dataQr = `ID${data[0]};Назва:${data[1]};Інвентарний:${data[2]};Кількість:${data[5]};Ціна:${data[6]}`;
+                    let text = 'провwпро';
                     clearBox('qrcode');
 
                     new QRCode(document.getElementById('qrcode'), {
-                        text: 'проба',
+                        text: `${data[1]}`,
                         // width: 128,
                         // height: 128,
                         colorDark: '#000',
@@ -458,4 +478,12 @@
                 document.getElementById(elementID).innerHTML = "";
             }
         </script>
+
+            <script>
+                var dataTable = new DataTable("#datatable", {
+                    searchable: true,
+                    fixedHeight: true,
+                    ...
+                });
+            </script>
     @endsection

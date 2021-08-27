@@ -258,9 +258,31 @@
             <script type="text/javascript">
                 $(document).ready(function() {
                     $('#datatable').DataTable( {
-                        // "scrollX": true,
+                        // "iDisplayLength": -1,
+                        "bPaginate": true,
+                        "iCookieDuration": 60,
+                        "bStateSave": false,
+                        "bAutoWidth": false,
+                        //true
+                        "bScrollAutoCss": true,
+                        "bProcessing": true,
+                        "bRetrieve": true,
+                        "bJQueryUI": true,
+                        //"sDom": 't',
+                        "sDom": '<"H"CTrf>t<"F"lip>',
                         lengthMenu: [5, 10, 20, 50],
+                        // "aLengthMenu": [[5, 10, 20, -1], [5, 10, 20, "All"]],
+                        //"sScrollY": "500px",
+                        // "sScrollX": "100%",
+                        // "sScrollXInner": "110%",
+                        "fnInitComplete": function() {
+                            this.css("visibility", "visible");
+                        },
+
                         "order": [[ 0, "desc" ]],
+
+                        // "scrollX": true,
+                        // "order": [[ 0, "desc" ]],
                     } );
                 } );
             </script>
