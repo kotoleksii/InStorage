@@ -81,7 +81,7 @@
         </div>
     </nav>
     <main class="overflow-auto">
-        <div class="col pt-4 px-5">
+        <div class="col pt-4 px-3">
             @yield('main_content')
         </div>
     </main>
