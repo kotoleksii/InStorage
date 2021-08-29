@@ -15,8 +15,6 @@
         </div>
     @endif
 
-{{--    <div id="qrcode"></div>--}}
-
     <!-- Start Modal QR -->
     <div class="modal hide fade" id="QRModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered">
@@ -406,8 +404,8 @@
             $(document).ready(function () {
                 $('select').selectize({
                     // sortField: 'text'
-                }); }
-            );
+                });
+            });
         </script>
 
         <script type="text/javascript">
@@ -442,9 +440,7 @@
                     "fnInitComplete": function() {
                         this.css("visibility", "visible");
                     },
-
-
-                    "scrollX": true,
+                    // "scrollX": true,
                     // "order": [[ 0, "desc" ]],
                 } );
             } );
@@ -458,7 +454,7 @@
                     let data = table.row(this).data();
 
                     let dataQr = `ID${data[0]};Назва:${data[1]};Інвентарний:${data[2]};Кількість:${data[5]};Ціна:${data[6]}`;
-                    let text = 'провwпро';
+
                     clearBox('qrcode');
 
                     new QRCode(document.getElementById('qrcode'), {
@@ -478,12 +474,4 @@
                 document.getElementById(elementID).innerHTML = "";
             }
         </script>
-
-            <script>
-                var dataTable = new DataTable("#datatable", {
-                    searchable: true,
-                    fixedHeight: true,
-                    ...
-                });
-            </script>
     @endsection

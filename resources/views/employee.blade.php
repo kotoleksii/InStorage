@@ -118,7 +118,7 @@
 
         <!-- Start Table -->
         <div class="table-responsive">
-            <table id="datatable" class="table table-striped table-dark table-bordered table-hover display nowrap" >
+            <table id="datatable" class="table table-striped table-dark table-bordered table-hover display nowrap" style="width: 100%;">
                 <thead>
                 <tr>
                     <th scope="row">ID</th>
@@ -267,7 +267,7 @@
                 },
 
                 "order": [[ 5, "desc" ]],
-
+                // responsive: true,
                 // "scrollX": true,
                 // "order": [[ 0, "desc" ]],
             } );

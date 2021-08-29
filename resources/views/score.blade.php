@@ -15,7 +15,7 @@
         </div>
     @endif
 
-    <!-- Start Modal Edit Score -->
+   <!-- Start Modal Edit Score -->
     <div class="modal hide fade" id="updateScoreModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog">
             <div class="modal-content bg-dark">
@@ -102,7 +102,7 @@
 
         <!-- Start Table -->
         <div class="table-responsive">
-            <table id="datatable" class="table table-striped table-dark table-bordered table-hover display nowrap" style="width:100%">
+            <table id="datatable" class="table table-striped table-dark table-bordered table-hover display nowrap" style="width:100%;">
                 <thead>
                 <tr>
                     <th scope="row">ID</th>
@@ -131,6 +131,7 @@
             </table>
         </div>
     </form>
+    </>
     <!-- End Main Content -->
 
     <!-- Start Modal Create -->
@@ -280,7 +281,7 @@
                         },
 
                         "order": [[ 0, "desc" ]],
-
+                        responsive: true,
                         // "scrollX": true,
                         // "order": [[ 0, "desc" ]],
                     } );
