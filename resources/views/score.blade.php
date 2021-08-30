@@ -17,20 +17,20 @@
 
    <!-- Start Modal Edit Score -->
     <div class="modal hide fade" id="updateScoreModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog">
-            <div class="modal-content bg-dark">
-                <div class="card shadow modal-body bg-dark rounded">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background-color: #151b27">
+                <div class="card shadow modal-body rounded" style="background-color: #151b27">
                     <form action="{{route('update_score')}}" method="POST">
                         @csrf
                         <input type="hidden" id="score_id" name="score_id" value="">
-                        <div class="p-2 mb-1 bg-dark rounded">
+                        <div class="p-2 mb-1 rounded" style="background-color: #151b27">
                             <div class="card-body p-2">
 
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
 
-                                <h4 class="text-center card-title text-success">Edit Score</h4>
+                                <p class="text-center fs-3 card-title" style="color: #a2bdd8">Edit Score</p>
 
                                 <div class="mb-2">
                                     <label for="e_title" class="form-label">Title</label>
@@ -42,10 +42,8 @@
                                     <input type="text" name="description" id="e_description" value="" class="form-control">
                                 </div>
 
-                                <hr>
-
-                                <div class="d-grid gap-2 col">
-                                    <button type="submit" class="btn btn-outline-success btn-lg" name="btn_upd">Update</button>
+                                <div class="d-grid gap-2 col mt-4">
+                                    <button type="submit" class="btn btn-lg shadow text-white" style="background-color: #276899;" name="btn_upd">Update</button>
                                 </div>
                             </div>
                         </div>
@@ -59,12 +57,12 @@
     <!-- Start Modal Delete Score -->
     <div class="modal hide fade" id="deleteScoreModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog">
-            <div class="modal-content bg-dark">
-                <div class="card shadow modal-body bg-dark rounded">
+            <div class="modal-content" style="background-color: #151b27">
+                <div class="card shadow modal-body rounded" style="background-color: #151b27">
                     <form action="{{route('delete_score')}}" method="POST">
                         @method('delete')
                         @csrf
-                        <div class="p-2 mb-1 bg-dark rounded">
+                        <div class="p-2 mb-1 rounded" style="background-color: #151b27">
                             <div class="card-body p-2">
                                 <div class="modal-body">
                                     <p class="text-center">Are you sure you want to delete this?</p>
@@ -73,7 +71,7 @@
                                 </div>
                                 <div class="d-grid gap-2 col p-3">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Cancel</button>
-                                    <button type="submit" class="btn btn-outline-danger" name="btn_del" id="btn_del" disabled>Yes, Delete</button>
+                                    <button type="submit" class="btn btn-danger shadow-sm" name="btn_del" id="btn_del" disabled>Yes, Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -131,24 +129,23 @@
             </table>
         </div>
     </form>
-    </>
     <!-- End Main Content -->
 
     <!-- Start Modal Create -->
     <div class="modal hide fade" id="createScoreModal" role="dialog" tabindex="-1" aria-labelledby="createScoreModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-dark">
-                <div class="card shadow modal-body bg-dark rounded">
+            <div class="modal-content" style="background-color: #151b27">
+                <div class="card shadow modal-body rounded" style="background-color: #151b27">
                     <form action="{{action([\App\Http\Controllers\ScoreController::class, 'create_web'])}}" method="POST" class="needs-validation" novalidate="" autocomplete="off">
                         @csrf
-                        <div class="p-2 mb-1 bg-dark rounded">
+                        <div class="p-2 mb-1 rounded" style="background-color: #151b27">
                             <div class="card-body p-2">
 
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
 
-                                <h4 class="text-center card-title text-success">New Score</h4>
+                                <p class="text-center fs-3 card-title" style="color: #a2bdd8">New Score</p>
 
                                 <div class="mb-2">
                                     <label for="title" class="form-label">Title</label>
@@ -160,10 +157,8 @@
                                     <input type="text" name="description" id="description" class="form-control">
                                 </div>
 
-                                <hr>
-
-                                <div class="d-grid gap-2 col">
-                                    <button type="submit" class="btn btn-outline-success btn-lg" name="btn_add">Create</button>
+                                <div class="d-grid gap-2 col mt-4">
+                                    <button type="submit" class="btn btn-lg shadow text-white" style="background-color: #276899;"  name="btn_add">Create</button>
                                 </div>
 
                             </div>
@@ -191,7 +186,7 @@
                 let scr_id = button.data('scrid');
                 let modal = $(this);
 
-                // modal.find('.modal-body #scr_id').val(scr_id);
+                modal.find('.modal-body #scr_id').val(scr_id);
 
                 await renderScores(scr_id);
             });
@@ -226,9 +221,11 @@
                 let infoMessage = '';
                 if(scoresFilteredLength > 0)
                     infoMessage = `<div class="score_list_message text-danger">Видалення неможливе, перенесіть матеріали</div>`
+                else
+                    infoMessage = `<div class="score_list_message text-success">Видалення можливе, якщо впевнені - тисніть YES</div>`
 
                 let container = document.querySelector('.scores_length');
-                container.innerHTML = infoMessage + htmlScoreListHeader + html;
+                container.innerHTML = htmlScoreListHeader + infoMessage +  html;
             }
 
             function btnDelBehavior(scoresFilteredLength)

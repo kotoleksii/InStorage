@@ -36,6 +36,116 @@
     </div>
     <!-- End Modal QR -->
 
+    <!-- Start Modal Edit Material -->
+    <div class="modal hide fade" id="updateMaterialModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background-color: #151b27">
+                <div class="card shadow modal-body rounded" style="background-color: #151b27">
+                    <form action="{{route('update_material')}}" method="POST">
+                        @csrf
+                        <input type="hidden" id="material_id" name="material_id" value="">
+                        <div class="p-2 mb-1 rounded" style="background-color: #151b27">
+                            <div class="card-body p-2">
+
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+
+                                <p class="text-center fs-3 card-title" style="color: #a2bdd8">Edit Material</p>
+
+                                <div class="mb-2">
+                                    <label for="e_title" class="form-label">Title</label>
+                                    <input type="text" name="title" id="e_title" class="form-control">
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 mb-2">
+                                        <div class="row">
+                                            <div class="col-7 col-sm-7">
+                                                <label for="e_inventory_number" class="form-label">Inventory Number</label>
+                                                <input type="text" name="inventory_number" id="e_inventory_number" class="form-control">
+                                            </div>
+                                            <div class="col-5 col-sm-5">
+                                                <label for="e_date_start" class="form-label">Date Start</label>
+
+                                                <!-- Date Picker Input -->
+                                                <input type="text" class="form-control" name="date_start" id="e_date_start"/>
+                                                <!-- DEnd ate Picker Input -->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12 mb-2">
+                                        <div class="row">
+
+                                            <div class="col-4 col-sm-5">
+                                                <label for="e_price" class="form-label">Price</label>
+                                                <input type="text" name="price" id="e_price" class="form-control">
+                                            </div>
+
+                                            <div class="col-4 col-sm-4">
+                                                <label for="e_amount" class="form-label">Amount</label>
+                                                <input type="text" name="amount" id="e_amount" class="form-control">
+                                            </div>
+
+                                            <div class="col-4 col-sm-3">
+                                                <label for="e_type" class="form-label">Type</label>
+                                                <select name="type" id="e_type" aria-label="Type list">
+                                                    <option>шт.</option>
+                                                    <option>компл.</option>
+                                                    <option>м.</option>
+                                                    <option>кг.</option>
+                                                    <option>мп.</option>
+                                                    <option>пар.</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2 col-12 mt-4">
+                                    <button type="submit" class="btn btn-lg shadow text-white" style="background-color: #276899;" name="btn_upd">Update</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Edit Score -->
+
+    <!-- Start Modal Delete Material -->
+    <div class="modal hide fade" id="deleteMaterialModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background-color: #151b27">
+                <div class="card shadow modal-body rounded" style="background-color: #151b27">
+                    <form action="{{route('delete_material')}}" method="POST">
+                        @method('delete')
+                        @csrf
+                        <div class="p-2 mb-1 rounded" style="background-color: #151b27">
+                            <div class="card-body p-2">
+                                <div class="modal-body">
+                                    <input type="hidden" id="mat_id" name="material_id" value="">
+                                    <p class="text-center materials_length"></p>
+                                </div>
+                                <div class="d-grid gap-2 col p-3">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Cancel</button>
+                                    <button type="submit" class="btn btn-danger shadow-sm" name="btn_del" id="btn_del">Yes, Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Delete Material -->
+
 
     <form method="get" action="">
             <div class="nav nav-pills flex-column mb-auto list-unstyled ps-0">
@@ -118,20 +228,20 @@
                                                 -> where('employee_id', '=', $_GET["employee_select"])
                                                 -> where('score_id', '=', $_GET["score_select"]) as $material)
                                         <tr>
-                                            <th scope="row">{{$material->id}}</th>
-                                            <td>{{$material->title}}</td>
-                                            <td>{{$material->inventory_number}}</td>
-                                            <td>{{$material->date_start}}</td>
-                                            <td>{{$material->type}}</td>
-                                            <td>{{$material->amount}}</td>
-                                            <td>{{$material->price_hr}}</td>
-                                            <td>{{$material->total_sum_hr}}</td>
+                                            <th scope="row" class="id_material">{{$material->id}}</th>
+                                            <td class="title">{{$material->title}}</td>
+                                            <td class="inventory_number">{{$material->inventory_number}}</td>
+                                            <td class="date_start">{{$material->date_start}}</td>
+                                            <td class="type">{{$material->type}}</td>
+                                            <td class="amount">{{$material->amount}}</td>
+                                            <td class="price">{{$material->price}}</td>
+                                            <td class="sum">{{$material->sum}}</td>
 
                                             <td>
-                                                <a class="btn btn-warning btn-sm"  href="materials/edit/{{$material->id}}">
+                                                <a href="" class="btn btn-warning btn-sm materialsEdits" data-bs-toggle="modal" data-bs-target="#updateMaterialModal">
                                                     <i class="bi bi-pencil-fill"></i>
                                                 </a>
-                                                <a class="btn btn-danger btn-sm" href="materials/delete/{{$material->id}}">
+                                                <a href="" class="btn btn-danger btn-sm materialsDeletes" id="deleteMaterial" data-matid="{{$material->id}}" data-bs-toggle="modal" data-bs-target="#deleteMaterialModal">
                                                     <i class="bi bi-trash-fill"></i>
                                                 </a>
                                             </td>
@@ -181,23 +291,23 @@
                                         -> where('employee_id', '=', $_GET["employee_select"])
                                         as $material)
                                 <tr>
-                                    <th scope="row">{{$material->id}}</th>
-                                    <td>{{$material->title}}</td>
-                                    <td>{{$material->inventory_number}}</td>
-                                    <td>{{$material->date_start}}</td>
-                                    <td>{{$material->type}}</td>
-                                    <td>{{$material->amount}}</td>
-                                    <td>{{$material->price_hr}}</td>
-                                    <td>{{$material->total_sum_hr}}</td>
+                                    <th scope="row" class="id_material">{{$material->id}}</th>
+                                    <td class="title">{{$material->title}}</td>
+                                    <td class="inventory_number">{{$material->inventory_number}}</td>
+                                    <td class="date_start">{{$material->date_start}}</td>
+                                    <td class="type">{{$material->type}}</td>
+                                    <td class="amount">{{$material->amount}}</td>
+                                    <td class="price">{{$material->price}}</td>
+                                    <td class="sum">{{$material->sum}}</td>
                                     @foreach($scores->where('id', '=', $material->score_id) as $score)
                                         <td>{{$score->title}}</td>
                                     @endforeach
 
                                     <td>
-                                        <a class="btn btn-warning btn-sm"  href="materials/edit/{{$material->id}}">
+                                        <a href="" class="btn btn-warning btn-sm materialsEdits" data-bs-toggle="modal" data-bs-target="#updateMaterialModal">
                                             <i class="bi bi-pencil-fill"></i>
                                         </a>
-                                        <a class="btn btn-danger btn-sm" href="materials/delete/{{$material->id}}">
+                                        <a href="" class="btn btn-danger btn-sm materialsDeletes" id="deleteMaterial" data-matid="{{$material->id}}" data-bs-toggle="modal" data-bs-target="#deleteMaterialModal">
                                             <i class="bi bi-trash-fill"></i>
                                         </a>
                                     </td>
@@ -247,23 +357,23 @@
                                        -> where('score_id', '=', $_GET["score_select"])
                                         as $material)
                                 <tr>
-                                    <th scope="row">{{$material->id}}</th>
-                                    <td>{{$material->title}}</td>
-                                    <td>{{$material->inventory_number}}</td>
-                                    <td>{{$material->date_start}}</td>
-                                    <td>{{$material->type}}</td>
-                                    <td>{{$material->amount}}</td>
-                                    <td>{{$material->price_hr}}</td>
-                                    <td>{{$material->total_sum_hr}}</td>
+                                    <th scope="row" class="id_material">{{$material->id}}</th>
+                                    <td class="title">{{$material->title}}</td>
+                                    <td class="inventory_number">{{$material->inventory_number}}</td>
+                                    <td class="date_start">{{$material->date_start}}</td>
+                                    <td class="type">{{$material->type}}</td>
+                                    <td class="amount">{{$material->amount}}</td>
+                                    <td class="price">{{$material->price}}</td>
+                                    <td class="sum">{{$material->sum}}</td>
                                     @foreach($employees->where('id', '=', $material->employee_id) as $employee)
                                         <td>{{$employee->last_name}} {{$employee->first_name}}</td>
                                     @endforeach
 
                                     <td>
-                                        <a class="btn btn-warning btn-sm"  href="materials/edit/{{$material->id}}">
+                                        <a href="" class="btn btn-warning btn-sm materialsEdits" data-bs-toggle="modal" data-bs-target="#updateMaterialModal">
                                             <i class="bi bi-pencil-fill"></i>
                                         </a>
-                                        <a class="btn btn-danger btn-sm" href="materials/delete/{{$material->id}}">
+                                        <a href="" class="btn btn-danger btn-sm materialsDeletes" id="deleteMaterial" data-matid="{{$material->id}}" data-bs-toggle="modal" data-bs-target="#deleteMaterialModal">
                                             <i class="bi bi-trash-fill"></i>
                                         </a>
                                     </td>
@@ -399,6 +509,57 @@
             </div>
         </div>
         <!-- End Modal Create -->
+
+        <script>
+            $(document).on('click', '.materialsEdits', function(){
+                let _this = $(this).parents('tr');
+                $('#material_id').val(_this.find('.id_material').text());
+                $('#e_title').val(_this.find('.title').text());
+                $('#e_inventory_number').val(_this.find('.inventory_number').text());
+                $('#e_date_start').val(_this.find('.date_start').text());
+                $('#e_type').val(_this.find('.type').text());
+                $('#e_amount').val(_this.find('.amount').text());
+                $('#e_price').val(_this.find('.price').text());
+            });
+        </script>
+
+        <script>
+            $('#deleteMaterialModal').on('show.bs.modal', async function (event) {
+                let button = $(event.relatedTarget);
+
+                let mat_id = button.data('matid');
+                let modal = $(this);
+
+                modal.find('.modal-body #mat_id').val(mat_id);
+
+
+                await renderMaterials(mat_id);
+            });
+            async function getMaterials(url) {
+                try {
+                    let res = await fetch(url);
+                    return await res.json()
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+            async function renderMaterials(mat_id) {
+                let url = `api/materials/`;
+                let materials = await getMaterials(url);
+                let materialsFiltered = materials.filter(value => value.id === mat_id);
+                // let scoresFilteredLength = scoresFiltered.length;
+                let html = '';
+
+               materialsFiltered
+                    .forEach(material => {
+                        let htmlSegment = `Are you sure you want to delete <b>${material.title}</b> (${material.id})?`
+                        html += htmlSegment;
+                    });
+
+                let container = document.querySelector('.materials_length');
+                container.innerHTML = html;
+            }
+        </script>
 
         <script>
             $(document).ready(function () {

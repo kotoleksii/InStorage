@@ -17,20 +17,20 @@
 
     <!-- Start Modal Edit Employee -->
     <div class="modal hide fade" id="updateEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog">
-            <div class="modal-content bg-dark">
-                <div class="card shadow modal-body bg-dark rounded">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background-color: #151b27">
+                <div class="card shadow modal-body rounded" style="background-color: #151b27">
                     <form action="{{route('update_employee')}}" method="POST">
                         @csrf
                         <input type="hidden" id="employee_id" name="employee_id" value="">
-                        <div class="p-2 mb-1 bg-dark rounded">
+                        <div class="p-2 mb-1 rounded" style="background-color: #151b27">
                             <div class="card-body p-2">
 
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
 
-                                <h4 class="text-center card-title text-success">Edit Employee </h4>
+                                <p class="text-center fs-3 card-title" style="color: #a2bdd8">Edit Employee </p>
 
                                 <div class="mb-2">
                                     <label for="e_first_name" class="form-label">First Name</label>
@@ -47,10 +47,8 @@
                                     <input type="text" name="post" id="e_post" value="" class="form-control">
                                 </div>
 
-                                <hr>
-
-                                <div class="d-grid gap-2 col">
-                                    <button type="submit" class="btn btn-outline-success btn-lg" name="btn_upd">Update</button>
+                                <div class="d-grid gap-2 col mt-4">
+                                    <button type="submit" class="btn btn-lg shadow text-white" style="background-color: #276899;" name="btn_upd">Update</button>
                                 </div>
                             </div>
                         </div>
@@ -64,32 +62,21 @@
     <!-- Start Modal Delete Employee -->
     <div class="modal hide fade" id="deleteEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog">
-            <div class="modal-content bg-dark">
-                <div class="card shadow modal-body bg-dark rounded">
+            <div class="modal-content" style="background-color: #151b27">
+                <div class="card shadow modal-body rounded" style="background-color: #151b27">
                 <form action="{{route('delete_employee')}}" method="POST">
                     @method('delete')
                     @csrf
-                    <div class="p-2 mb-1 bg-dark rounded">
+                    <div class="p-2 mb-1 rounded" style="background-color: #151b27">
                         <div class="card-body p-2">
                 <div class="modal-body">
                     <p class="text-center">Are you sure you want to delete this?</p>
-{{--                    <input type="text" name="post" id="d_post" value="" class="form-control">--}}
                     <input type="hidden" id="empl_id" name="employee_id" value="">
-                   <div id="mat-list">
-                       <ol>
-                           <li>
-
-{{--                            @if(isset($_GET["employee_id"]))--}}
-{{--                               <h1>aaaa</h1>--}}
-{{--                               @endif--}}
-
-                           </li>
-                       </ol>
-                   </div>
+                    <ul class="employees_length ps-2" style="width: auto; height: 100px; overflow-x: hidden; overflow-y: scroll;"></ul>
                 </div>
                 <div class="d-grid gap-2 col p-3">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Cancel</button>
-                    <button type="submit" class="btn btn-outline-danger" name="btn_del">Yes, Delete</button>
+                    <button type="submit" class="btn btn-danger shadow-sm" name="btn_del" id="btn_del" disabled>Yes, Delete</button>
                 </div>
                         </div>
                     </div>
@@ -144,7 +131,6 @@
                                 <i class="bi bi-pencil-fill"></i>
                             </a>
                             <a class="btn btn-danger btn-sm employeesDeletes" href="" id="deleteEmployee" data-emplid="{{$employee->id}}" data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal" role="button" aria-expanded="true">
-{{--                               onclick="return confirm('Are you sure to want to delete it?')" data-original-title="Delete">--}}
                                 <i class="bi bi-trash-fill"></i>
                             </a>
                         </td>
@@ -160,18 +146,18 @@
     <!-- Start Modal Create -->
     <div class="modal hide fade" id="createEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-dark">
-                <div class="card shadow modal-body bg-dark rounded">
+            <div class="modal-content" style="background-color: #151b27">
+                <div class="card shadow modal-body rounded" style="background-color: #151b27">
                     <form action="{{route('create_employee')}}" method="POST" class="needs-validation" novalidate="" autocomplete="off">
                         @csrf
-                        <div class="p-2 mb-1 bg-dark rounded">
+                        <div class="p-2 mb-1 rounded" style="background-color: #151b27">
                             <div class="modal-body p-2">
 
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
 
-                                <h4 class="text-center card-title text-success">New Employee</h4>
+                                <p class="text-center fs-3 card-title" style="color: #a2bdd8">New Employee</p>
 
                                 <div class="mb-2">
                                     <label for="first_name" class="form-label">First Name</label>
@@ -193,10 +179,8 @@
                                     </select>
                                 </div>
 
-                                <hr>
-
-                                <div class="d-grid gap-2 col">
-                                    <button type="submit" class="btn btn-outline-success btn-lg" name="btn_add">Create</button>
+                                <div class="d-grid gap-2 col mt-4">
+                                    <button type="submit" class="btn btn-lg shadow text-white" style="background-color: #276899;" name="btn_add">Create</button>
                                 </div>
 
                             </div>
@@ -216,21 +200,72 @@
             $('#e_last_name').val(_this.find('.last_name').text());
             $('#e_post').val(_this.find('.post').text());
         });
-
     </script>
 
     <script>
-       $('#deleteEmployeeModal').on('show.bs.modal', function(event){
-           let button = $(event.relatedTarget);
+        $('#deleteEmployeeModal').on('show.bs.modal', async function (event) {
+            let button = $(event.relatedTarget);
 
-           let empl_id = button.data('emplid');
-           let modal = $(this);
+            let empl_id = button.data('emplid');
+            let modal = $(this);
 
-           modal.find('.modal-body #empl_id').val(empl_id);
+            modal.find('.modal-body #empl_id').val(empl_id);
 
-           // document.getElementById('mat-list').innerHTML = empl_id;
-           // $('#mat-list').html(empl_id);
-       });
+            await renderEmployees(empl_id);
+        });
+        async function getMaterials(url) {
+            try {
+                let res = await fetch(url);
+                return await res.json()
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        async function renderEmployees(empl_id) {
+            let url = `api/materials/`;
+            let employees = await getMaterials(url);
+            let employeesFiltered = employees.filter(value => value.employee_id === empl_id);
+            let employeesFilteredLength = employeesFiltered.length;
+            let html = '';
+
+            btnDelBehavior(employeesFilteredLength);
+
+            employeesFiltered
+                .forEach(material => {
+                    let htmlSegment =
+                        `<div class="employee">
+                            <li style="list-style-type: none;">${material.id} - ${material.title} (${material.inventory_number})</li>
+                        </div>`;
+
+                    html += htmlSegment;
+                });
+
+            let htmlEmployeeListHeader = `<div class="employee_list_header">У цього робітника на рахунках матеріалів - ${employeesFilteredLength}</div>`
+            let infoMessage = '';
+            if(employeesFilteredLength > 0)
+                infoMessage = `<div class="employee_list_message text-danger">Видалення неможливе, перенесіть матеріали</div>`
+            else
+                infoMessage = `<div class="employee_list_message text-success">Видалення можливе, якщо впевнені - тисніть YES</div>`
+
+            let container = document.querySelector('.employees_length');
+            container.innerHTML = htmlEmployeeListHeader + infoMessage + html;
+        }
+
+        function btnDelBehavior(employeesFilteredLength)
+        {
+            const text = document.getElementById("btn_del");
+
+            switch (employeesFilteredLength) {
+                case 0:
+                    text.removeAttribute("disabled", "");
+                    text.setAttribute("enabled", "");
+                    break;
+                default:
+                    text.removeAttribute("enabled", "");
+                    text.setAttribute("disabled", "");
+                    break;
+            }
+        }
     </script>
 
 

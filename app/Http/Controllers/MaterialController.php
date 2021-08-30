@@ -92,29 +92,55 @@ class MaterialController extends Controller
 
     public function update_web(Request $request): RedirectResponse
     {
-        $data = Material::find($request->input('id'));
-        $data->title = $request->input('title');
-        $data->inventory_number = $request->input('inventory_number');
+        $updateMaterial = [
+            'id' => $request->input('material_id'),
+            'title' => $request->input('title'),
+            'inventory_number' =>  $request->input('inventory_number'),
+            'date_start' => date("Y-m-d",  strtotime($request-> input('date_start'))),
+            'price' => $request->input('price'),
+            'amount' => $request->input('amount'),
+            'type' => $request->input('type'),
+            'sum' => $request->input('price') * $request->input('amount'),
+        ];
 
-        $data->date_start = date("Y-m-d",  strtotime('01-'. $request-> input('date_start')));
-//        $data->date_start = $request->date_start;
-        $data->amount = $request->input('amount');
-        $data->price = $request->input('price');
-        $data->type = $request->input('type');
+        Material::where('id', $request->input('material_id'))->update($updateMaterial);
 
-        $data->save();
-
-        return Redirect::back();
-
+        return back()->withErrors("Material {$request->input('material_id')} updated");
     }
 
-    public function delete_web($id): RedirectResponse
-    {
-        $data = Material::find($id);
-        $data->delete();
-//        return redirect()->route('home')->with('success', 'Material deleted');
+//    public function update_web(Request $request): RedirectResponse
+//    {
+//        $data = Material::find($request->input('id'));
+//        $data->title = $request->input('title');
+//        $data->inventory_number = $request->input('inventory_number');
+//
+//        $data->date_start = date("Y-m-d",  strtotime('01-'. $request-> input('date_start')));
+////        $data->date_start = $request->date_start;
+//        $data->amount = $request->input('amount');
+//        $data->price = $request->input('price');
+//        $data->type = $request->input('type');
+//
+//        $data->save();
+//
+//        return Redirect::back();
+//
+//    }
 
-        return Redirect::back()->withErrors(["Material $id deleted"]);
+//    public function delete_web($id): RedirectResponse
+//    {
+//        $data = Material::find($id);
+//        $data->delete();
+////        return redirect()->route('home')->with('success', 'Material deleted');
+//
+//        return Redirect::back()->withErrors(["Material $id deleted"]);
+//    }
+
+    public function delete_web(Request $request): RedirectResponse
+    {
+        $material = Material::findOrFail($request->input('material_id'));
+        $material->delete();
+
+        return back()->withErrors("Material {$request->input('material_id')} deleted");
     }
 
     /**

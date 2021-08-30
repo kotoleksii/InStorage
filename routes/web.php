@@ -27,9 +27,9 @@ Route::post('review/check', [MainController::class, 'review_check']);
 Route::group(['prefix' => 'materials'], function(){
     Route::get('/', [MaterialController::class, 'get_web'])->name('material');
     Route::post('/check', [MaterialController::class, 'create_web'])->name('create_material');
-    Route::get('edit/{material}', [MaterialController::class, 'show_web']);
-    Route::post('edit/{material}', [MaterialController::class, 'update_web']);
-    Route::get('delete/{material}', [MaterialController::class, 'delete_web']);
+//    Route::get('edit/{material}', [MaterialController::class, 'show_web']);
+    Route::post('updateMaterial', [MaterialController::class, 'update_web'])->name('update_material');
+    Route::delete('deleteMaterial', [MaterialController::class, 'delete_web'])->name('delete_material');
     Route::get('/overview', [MaterialController::class, 'get_overview']);
 });
 
