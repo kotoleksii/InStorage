@@ -28,7 +28,9 @@
     <nav class="navbar navbar-expand-md navbar-dark py-1" style="background-color: #111520">
         <div class="container-fluid">
             <a href="{{action([\App\Http\Controllers\MainController::class, 'home'])}}" class="d-flex pb-3 mb-md-0 me-md-auto text-white text-decoration-none pt-3">
-                <span class="fs-5"><img src="{{asset('images/logo2.png')}}" alt="logo" width="33" height="36"><span> InStorage</span></span>
+                <span class="fs-5"><img src="{{asset('images/logo1.png')}}" alt="logo" width="33" height="36">
+                    <span> InStorage</span>
+                </span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
